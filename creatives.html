@@ -696,8 +696,7 @@ function $(id){return document.getElementById(id);}
     var item = document.createElement("div");
     item.className = "lboxitem";
     var v = document.createElement("video");
-    v.src = src; v.controls = true; v.preload = "none";
-    v.poster = "assets/video-creatives/posters/" + src.split("/").pop().replace(".mp4", ".jpg");
+    v.src = src; v.controls = true; v.preload = "metadata";
     if(src.indexOf("Social-Edit-5.mp4") > -1) v.className = "fill916";
     item.appendChild(v);
     return item;
@@ -729,8 +728,8 @@ function $(id){return document.getElementById(id);}
     c.className = "reelcard";
     var v = document.createElement("video");
     var first = cat.items[0].split("/").pop();
-    /* small 5 second preview and a still frame, so the tile shows instantly instead of waiting on the full video */
-    v.src = "assets/video-creatives/previews/" + first; v.poster = "assets/video-creatives/posters/" + first.replace(".mp4", ".jpg");
+    /* small 5 second moving preview, so the tile plays right away instead of waiting on the full video */
+    v.src = "assets/video-creatives/previews/" + first;
     v.muted = true; v.preload = "auto";
     v.setAttribute("muted", ""); v.setAttribute("loop", ""); v.setAttribute("playsinline", "");
     if(!RM) v.setAttribute("autoplay", "");
