@@ -140,6 +140,35 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
 .mnav-sec a:active{color:var(--red)}
 .mnav-sec.mnav-collab a{font-size:15px;font-weight:500;color:var(--au-muted)}
 @media(min-width:821px){.mnav{display:none}}
+.navdrop a.locked{opacity:.55}
+.navdrop a.locked:hover{opacity:.8;color:var(--red)}
+.mnav-sec a.locked{opacity:.35}
+.lockgate{--ink:#171514;--muted:#78736C;--rule:#E3E0DA;--red:#E8462A;
+  --sf:'Inter',-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;
+  position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;
+  background:rgba(23,21,20,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s}
+.lockgate.open{opacity:1;visibility:visible}
+.lockgate-card{position:relative;width:100%;max-width:340px;background:#fff;border-radius:18px;padding:34px 28px;
+  text-align:center;box-shadow:0 30px 70px rgba(0,0,0,.35);transform:translateY(10px) scale(.97);
+  transition:transform .3s cubic-bezier(.4,0,.2,1);font-family:var(--sf)}
+.lockgate.open .lockgate-card{transform:none}
+.lockgate-eyebrow{font-family:Archivo,"Helvetica Neue",Arial,sans-serif;font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+.lockgate h4{font-size:19px;font-weight:600;color:var(--ink);margin:0 0 8px}
+.lockgate p{font-size:13px;color:var(--muted);margin:0 0 20px;line-height:1.5}
+.lockgate input{width:100%;box-sizing:border-box;padding:11px 14px;border:1px solid var(--rule);border-radius:10px;
+  font-size:14px;font-family:var(--sf);margin-bottom:12px;text-align:center;letter-spacing:.04em;color:var(--ink)}
+.lockgate input:focus{outline:none;border-color:var(--ink)}
+.lockgate-enter{width:100%;padding:11px 14px;border:0;border-radius:10px;background:var(--ink);color:#fff;
+  font-size:14px;font-weight:600;font-family:var(--sf);cursor:pointer}
+.lockgate-enter:hover{background:#000}
+.lockgate-msg{font-size:12px;color:var(--red);margin-top:12px;min-height:14px;opacity:0;transition:opacity .2s}
+.lockgate-msg.show{opacity:1}
+.lockgate-close{position:absolute;top:14px;right:16px;width:26px;height:26px;border:0;background:none;
+  color:var(--muted);font-size:20px;line-height:1;cursor:pointer}
+.lockgate.shake .lockgate-card{animation:lockshake .4s}
+@keyframes lockshake{20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}100%{transform:translateX(0)}}
 </style>
 <div class="navbackdrop" id="navbackdrop"></div>
 <nav class="topnav" id="topnav">
@@ -194,6 +223,43 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
     ]}
   ];
   var root=document.getElementById('tnmenu');
+  var gate=document.createElement('div');
+  gate.className='lockgate';
+  gate.innerHTML='<div class="lockgate-card">'+
+    '<button type="button" class="lockgate-close" aria-label="Close">&times;</button>'+
+    '<p class="lockgate-eyebrow">Access Required</p>'+
+    '<h4 id="lockgateTitle">This section is invite only</h4>'+
+    '<p>Enter the password to continue.</p>'+
+    '<input type="password" id="lockgateInput" placeholder="Password" autocomplete="off">'+
+    '<button type="button" class="lockgate-enter">Unlock</button>'+
+    '<p class="lockgate-msg" id="lockgateMsg">Access denied. Check back soon.</p>'+
+  '</div>';
+  document.body.appendChild(gate);
+  var gateInput=gate.querySelector('#lockgateInput'),gateMsg=gate.querySelector('#lockgateMsg'),gateTitle=gate.querySelector('#lockgateTitle');
+  function openGate(label){
+    gateTitle.textContent=label?label+' is invite only':'This section is invite only';
+    gateInput.value='';
+    gateMsg.classList.remove('show');
+    gate.classList.add('open');
+    document.documentElement.style.overflow='hidden';
+    setTimeout(function(){gateInput.focus()},250);
+  }
+  function closeGate(){
+    gate.classList.remove('open');
+    document.documentElement.style.overflow='';
+  }
+  function tryGate(){
+    if(!gateInput.value){gateInput.focus();return}
+    gateMsg.classList.add('show');
+    gate.classList.add('shake');
+    setTimeout(function(){gate.classList.remove('shake')},400);
+    gateInput.value='';
+  }
+  gate.querySelector('.lockgate-close').addEventListener('click',closeGate);
+  gate.querySelector('.lockgate-enter').addEventListener('click',tryGate);
+  gateInput.addEventListener('keydown',function(e){if(e.key==='Enter')tryGate()});
+  gate.addEventListener('click',function(e){if(e.target===gate)closeGate()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&gate.classList.contains('open'))closeGate()});
   function buildCol(items,name){
     var col=document.createElement('div');
     col.className='navdrop-col';
@@ -208,7 +274,10 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
         el=document.createElement('a');
         el.href=it.href;
       }else{
-        el=document.createElement('span');
+        el=document.createElement('a');
+        el.href='#';
+        el.className='locked';
+        el.addEventListener('click',function(e){e.preventDefault();openGate(it.label)});
       }
       el.textContent=it.label;
       col.appendChild(el);
@@ -286,8 +355,12 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
     sec.style.transitionDelay=(60+ci*40)+'ms';
     var h=document.createElement('h6'),ha=document.createElement('a');ha.href=c.page;ha.textContent=c.cat;h.appendChild(ha);sec.appendChild(h);
     list.forEach(function(it){
-      var el=document.createElement(it.live?'a':'span');
-      if(it.live)el.href=it.href;
+      var el=document.createElement('a');
+      el.href=it.live?it.href:'#';
+      if(!it.live){
+        el.className='locked';
+        el.addEventListener('click',function(e){e.preventDefault();setMnav(false);openGate(it.label)});
+      }
       el.textContent=it.label;sec.appendChild(el);
     });
     mIn.appendChild(sec);
