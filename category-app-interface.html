@@ -62,9 +62,9 @@ a{color:inherit}
 .tnmenu{display:flex;align-items:center;gap:28px;height:100%;
   font-size:11.5px;font-weight:400;letter-spacing:.08em;text-transform:uppercase}
 .tncat{position:relative;height:100%;display:flex;align-items:center}
-.tncat>button{all:unset;cursor:pointer;font-size:11.5px;font-weight:400;
+.tncat>a,.tncat>button{all:unset;cursor:pointer;font-size:11.5px;font-weight:400;
   letter-spacing:.08em;text-transform:uppercase;color:rgba(29,29,31,.82);transition:color .2s,opacity .2s;opacity:.82}
-.tncat:hover>button,.tncat.open>button{color:var(--red);opacity:1}
+.tncat:hover>a,.tncat.open>a,.tncat:hover>button,.tncat.open>button{color:var(--red);opacity:1}
 .tncat.empty>button{color:var(--muted);opacity:.5;cursor:default}
 .tncollab{font-family:Archivo,"Helvetica Neue",Arial,sans-serif;font-size:14px;font-weight:800;letter-spacing:.08em;
   text-transform:uppercase;color:var(--ink);text-decoration:none;transition:color .2s;flex:0 0 auto}
@@ -278,8 +278,8 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
     var hasContent=(c.items&&c.items.length)||(c.groups&&c.groups.length);
     var wrap=document.createElement('div');
     wrap.className='tncat'+(hasContent?'':' empty');
-    var btn=document.createElement('button');
-    btn.type='button';
+    var btn=document.createElement(hasContent?'a':'button');
+    if(hasContent){btn.href=c.page;}else{btn.type='button';}
     btn.textContent=c.cat;
     wrap.appendChild(btn);
     if(hasContent){
@@ -327,11 +327,6 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
       }
       wrap.addEventListener('mouseenter',openThis);
       wrap.addEventListener('mouseleave',closeThis);
-      btn.addEventListener('click',function(e){
-        e.stopPropagation();
-        wrap.classList.contains('open')?wrap.classList.remove('open'):openThis();
-        syncBackdrop();
-      });
     }
     root.appendChild(wrap);
   });
@@ -549,11 +544,11 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
   </header>
   <div class="au-grid pc-grid">
     <div class="au-tile">
-      <h2>App Interface</h2>
+      <h2>Companion App</h2>
       <p class="sub">A Figma system, companion app screens and a phone first product site.</p>
       <div class="au-actions"><a class="au-btn" href="app-interface.html">Explore More</a></div>
       <div class="au-media">
-        <img src="assets/app-interface/feature-1.jpg" alt="App Interface" loading="lazy" onerror="this.parentElement.classList.add('au-noimg')">
+        <img src="assets/app-interface/feature-1.jpg" alt="Companion App" loading="lazy" onerror="this.parentElement.classList.add('au-noimg')">
         <div class="au-need">assets/app-interface/feature-1.jpg</div>
       </div>
     </div>
