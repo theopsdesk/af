@@ -269,7 +269,10 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
     {cat:"App Interface",page:"category-app-interface.html",
       desc:"App screens and mobile sites, designed in Figma and built for real products.",
       items:[
-      {label:"App Interface",href:"app-interface.html",live:true}
+      {label:"Companion App",href:"app-interface.html",live:true},
+      {label:"Pulse",live:false},
+      {label:"Nomad",live:false},
+      {label:"Fieldnote",live:false}
     ]}
   ];
   var root=document.getElementById('tnmenu');
@@ -294,6 +297,7 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
     document.documentElement.style.overflow='hidden';
     setTimeout(function(){gateInput.focus()},250);
   }
+  window.openGate=openGate;
   function closeGate(){
     gate.classList.remove('open');
     document.documentElement.style.overflow='';

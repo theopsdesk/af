@@ -209,7 +209,10 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
     {cat:"App Interface",page:"category-app-interface.html",
       desc:"App screens and mobile sites, designed in Figma and built for real products.",
       items:[
-      {label:"App Interface",href:"app-interface.html",live:true}
+      {label:"Companion App",href:"app-interface.html",live:true},
+      {label:"Pulse",live:false},
+      {label:"Nomad",live:false},
+      {label:"Fieldnote",live:false}
     ]}
   ];
   var root=document.getElementById('tnmenu');
@@ -234,6 +237,7 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
     document.documentElement.style.overflow='hidden';
     setTimeout(function(){gateInput.focus()},250);
   }
+  window.openGate=openGate;
   function closeGate(){
     gate.classList.remove('open');
     document.documentElement.style.overflow='';
@@ -534,6 +538,8 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
 .pc-head h1{font-family:var(--sf);font-weight:600;font-size:clamp(30px,4vw,48px);line-height:1.08;letter-spacing:-.015em;margin:0}
 .pc-head p{font-family:var(--sf);font-size:17px;line-height:1.5;color:var(--au-muted);margin:12px 0 0}
 .pc-grid .au-tile:last-child:nth-child(odd){grid-column:1/-1}
+.au-tile.locked{opacity:.82}
+.au-tile.locked .au-btn{cursor:pointer}
 </style>
 
 <main class="au">
@@ -543,13 +549,37 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
     <p>App screens and mobile sites, designed in Figma and built for real products.</p>
   </header>
   <div class="au-grid pc-grid">
-    <div class="au-tile">
+    <div class="au-tile dark">
       <h2>Companion App</h2>
       <p class="sub">A Figma system, companion app screens and a phone first product site.</p>
       <div class="au-actions"><a class="au-btn" href="app-interface.html">Explore More</a></div>
       <div class="au-media">
         <img src="assets/app-interface/feature-1.jpg" alt="Companion App" loading="lazy" onerror="this.parentElement.classList.add('au-noimg')">
         <div class="au-need">assets/app-interface/feature-1.jpg</div>
+      </div>
+    </div>
+    <div class="au-tile locked">
+      <h2>Pulse</h2>
+      <p class="sub">A fitness tracking app, not public yet.</p>
+      <div class="au-actions"><button type="button" class="au-btn" onclick="openGate('Pulse')">Requires Access</button></div>
+      <div class="au-media au-noimg">
+        <div class="au-need">Requires Access</div>
+      </div>
+    </div>
+    <div class="au-tile locked">
+      <h2>Nomad</h2>
+      <p class="sub">A travel planning app, not public yet.</p>
+      <div class="au-actions"><button type="button" class="au-btn" onclick="openGate('Nomad')">Requires Access</button></div>
+      <div class="au-media au-noimg">
+        <div class="au-need">Requires Access</div>
+      </div>
+    </div>
+    <div class="au-tile dark locked">
+      <h2>Fieldnote</h2>
+      <p class="sub">A note taking app, not public yet.</p>
+      <div class="au-actions"><button type="button" class="au-btn" onclick="openGate('Fieldnote')">Requires Access</button></div>
+      <div class="au-media au-noimg">
+        <div class="au-need">Requires Access</div>
       </div>
     </div>
   </div>
