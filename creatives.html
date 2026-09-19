@@ -274,8 +274,8 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
       desc:"App screens and mobile sites, designed in Figma and built for real products.",
       items:[
       {label:"Companion App",href:"app-interface.html",live:true},
-      {label:"Pulse",live:false},
-      {label:"Nomad",live:false},
+      {label:"Stride",live:false},
+      {label:"Layover",live:false},
       {label:"Fieldnote",live:false}
     ]}
   ];
@@ -492,7 +492,7 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
 .lboxgrid.two{max-width:640px;grid-template-columns:repeat(2,1fr)}
 .lboxgrid{max-width:940px;margin:24px auto 0;display:grid;
   grid-template-columns:repeat(3,1fr);gap:18px;align-items:start}
-.lboxitem video{width:100%;height:auto;display:block;border-radius:20px}
+.lboxitem video{width:100%;height:auto;display:block;border-radius:20px;aspect-ratio:var(--ar,auto);background:#000}
 /* only Social-Edit-5 (3:4) is cropped to fill 9:16 so it matches the other social clips */
 .lboxitem video.fill916{aspect-ratio:9/16;object-fit:cover}
 @media(max-width:640px){.lboxgrid{grid-template-columns:1fr}}
@@ -506,7 +506,9 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
   background:var(--paper2);will-change:transform;position:relative;
   backface-visibility:hidden;-webkit-backface-visibility:hidden}
 .adcard img{display:block;height:100%;width:auto;backface-visibility:hidden;-webkit-backface-visibility:hidden}
-@media(max-width:640px){.adcard{height:min(58vh,520px)}.adstrack{gap:32px}}
+/* phones: every ad at its real ratio, never wider than the page content, no zoom */
+@media(max-width:734px){.adswrap{padding:24px 0}.adstrack{gap:32px;align-items:flex-start}.adcard{height:auto}
+  .adcard img{height:auto;width:auto;max-width:calc(100vw - 2*var(--pad));max-height:70svh}}
 .pg-scrub{display:flex;align-items:center;gap:2px;justify-content:center;margin-top:12px}
 .pg-indhit{padding:9px 5px;cursor:pointer}
 .pg-ind{position:relative;width:7px;height:7px;border-radius:980px;background:var(--rule);
@@ -592,7 +594,7 @@ function pgCarousel(o){
   }
   track.style.position = 'relative';
   var cards = Array.prototype.slice.call(track.children);
-  var dots = [], hits = [], cur = -1, ticking = false, timer = null, idle = null, ready = false, dragging = false;
+  var dots = [], hits = [], cur = -1, ticking = false, clock = null, idle = null, ready = false, dragging = false, touching = false, lastW = wrap.clientWidth;
   if(dotsWrap){
     for(var i = 0; i < N; i++){
       var hit = document.createElement('div'); hit.className = 'pg-indhit'; hit.dataset.idx = i;
@@ -612,7 +614,7 @@ function pgCarousel(o){
   }
   function jump(left){ wrap.scrollTo({left: left, behavior: 'instant'}); }
   function normalize(){
-    if(dragging) return;
+    if(dragging || touching) return;
     var k = Math.floor(nearest() / N);
     if(k !== HOME){ jump(wrap.scrollLeft + (HOME - k) * setW()); render(); }
   }
@@ -642,10 +644,10 @@ function pgCarousel(o){
       var act = nearest() % N;
       if(act !== cur){
         cur = act;
+        /* the pill fill belongs to the clock, so it stays empty until the slide has settled */
+        dots[act].querySelector('.pg-ind-fill').style.animation = 'none';
         dots.forEach(function(d, j){ d.classList.toggle('on', j === act); });
         hits.forEach(function(h, j){ h.classList.toggle('on', j === act); });
-        var fill = dots[act].querySelector('.pg-ind-fill');
-        fill.style.animation = 'none'; void fill.offsetWidth; fill.style.animation = '';
       }
     }
   }
@@ -656,37 +658,60 @@ function pgCarousel(o){
     for(var i = idx % N; i < cards.length; i += N){ var dd = Math.abs(i - b); if(dd < bd){ bd = dd; best = i; } }
     goTo(best, true);
   }
-  function stop(){ if(timer){ clearInterval(timer); timer = null; } }
-  function start(){
-    stop();
-    timer = setInterval(function(){ normalize(); goTo(nearest() + 1, true); }, 4000);
+  /* One clock. The pill fill and the slide timer start together, only once the carousel is at rest,
+     so the pill is full at the exact moment the next slide moves. */
+  function fillEl(){ return dots.length && cur >= 0 ? dots[cur].querySelector('.pg-ind-fill') : null; }
+  function stopClock(){
+    if(clock){ clearTimeout(clock); clock = null; }
+    var f = fillEl(); if(f) f.style.animation = 'none';
   }
+  function startClock(){
+    stopClock();
+    var f = fillEl(); if(f){ void f.offsetWidth; f.style.animation = ''; }
+    clock = setTimeout(function(){
+      clock = null; normalize(); goTo(nearest() + 1, true);
+      clearTimeout(idle); idle = setTimeout(settle, 900);
+    }, 4000);
+  }
+  function settle(){
+    if(!ready || dragging || touching || document.hidden) return;
+    normalize();
+    var b = nearest();
+    if(Math.abs(centerOf(cards[b]) - mid()) > 2){ goTo(b, true); clearTimeout(idle); idle = setTimeout(settle, 900); return; }
+    if(dotsWrap) startClock();
+  }
+  function afterMove(){ clearTimeout(idle); idle = setTimeout(settle, 180); }
   wrap.addEventListener('scroll', function(){
     if(!ticking){ ticking = true; requestAnimationFrame(render); }
-    clearTimeout(idle); idle = setTimeout(normalize, 220);
+    afterMove();
   }, {passive: true});
   if(dotsWrap){
     dotsWrap.addEventListener('click', function(e){
       var t = e.target.closest ? e.target.closest('.pg-indhit') : null;
       if(!t) return;
-      goToIdx(parseInt(t.dataset.idx, 10)); start();
+      stopClock(); goToIdx(parseInt(t.dataset.idx, 10)); afterMove();
     });
     var sx = 0, ss = 0;
     dotsWrap.addEventListener('pointerdown', function(e){
       var t = e.target.closest ? e.target.closest('.pg-indhit') : null;
       if(!t || parseInt(t.dataset.idx, 10) !== cur) return;
-      dragging = true; sx = e.clientX; ss = wrap.scrollLeft; stop();
+      dragging = true; sx = e.clientX; ss = wrap.scrollLeft; stopClock();
       t.setPointerCapture(e.pointerId);
     });
     dotsWrap.addEventListener('pointermove', function(e){
       if(!dragging) return;
       wrap.scrollLeft = ss + (e.clientX - sx) * setW() / dotsWrap.getBoundingClientRect().width;
     });
-    dotsWrap.addEventListener('pointerup', function(){ if(dragging){ dragging = false; start(); } });
-    dotsWrap.addEventListener('pointercancel', function(){ if(dragging){ dragging = false; start(); } });
+    var endDrag = function(){ if(dragging){ dragging = false; afterMove(); } };
+    dotsWrap.addEventListener('pointerup', endDrag);
+    dotsWrap.addEventListener('pointercancel', endDrag);
   }
-  wrap.addEventListener('pointerdown', stop, {passive: true});
-  wrap.addEventListener('pointerup', start, {passive: true});
+  /* A finger swipe ends in pointercancel, not pointerup, so both must hand control back. */
+  wrap.addEventListener('pointerdown', function(){ touching = true; stopClock(); }, {passive: true});
+  var release = function(){ if(touching){ touching = false; afterMove(); } };
+  wrap.addEventListener('pointerup', release, {passive: true});
+  wrap.addEventListener('pointercancel', release, {passive: true});
+  document.addEventListener('visibilitychange', function(){ if(document.hidden) stopClock(); else afterMove(); });
   function home(){ goTo(HOME * N + Math.max(cur, 0), false); render(); }
   var imgs = track.querySelectorAll('img');
   Array.prototype.forEach.call(imgs, function(img){ img.loading = 'eager'; });
@@ -695,9 +720,13 @@ function pgCarousel(o){
       return img.complete ? Promise.resolve() : new Promise(function(res){ img.addEventListener('load', res); img.addEventListener('error', res); });
     })),
     new Promise(function(res){ setTimeout(res, 2500); })
-  ]).then(function(){ ready = true; home(); if(dotsWrap) start(); });
+  ]).then(function(){ ready = true; home(); settle(); });
   Array.prototype.forEach.call(imgs, function(img){ img.addEventListener('load', function(){ if(ready) render(); }); });
-  window.addEventListener('resize', function(){ if(ready) home(); });
+  /* Phones fire resize when the address bar slides. Only a real width change may re-center. */
+  window.addEventListener('resize', function(){
+    if(!ready || wrap.clientWidth === lastW) return;
+    lastW = wrap.clientWidth; home(); afterMove();
+  });
 }
 </script>
 <script>
@@ -767,13 +796,27 @@ function $(id){return document.getElementById(id);}
     "assets/video-creatives/cgi-ad/Motion-Espresso.mp4"];
   var lbox = $("lbox"), lboxTitle = $("lboxTitle"), lboxDesc = $("lboxDesc"),
     lboxHero = $("lboxHero"), lboxGrid = $("lboxGrid"), lboxClose = $("lboxClose");
+  /* real shape of every clip, so the box is the right size before the file loads (iPhone would leave it 2:1) */
+  var RATIO = {"CGI-Ad-2.mp4":"496/864","CGI-Ad-3.mp4":"496/864","Docs-AI-CGI-Ad.mp4":"1920/1080","Motion-Espresso.mp4":"640/360","Motion-Headphones.mp4":"640/360","Motion-Sneaker.mp4":"640/360","Motion-Watch.mp4":"640/360","Pendant-Disassembly.mp4":"1920/1080","Afghan-Chinese-Wushu.mp4":"1920/1080","Kristina-Smallhorn-Edit.mp4":"1280/720","SAIGO-Noir.mp4":"1920/1080","Conscious-Evolution.mp4":"1280/720","VSL-Meta.mp4":"720/960","VSL-YouTube-Edit.mp4":"1920/1080","Charm-The-Pulse.mp4":"1920/1080","GRWM-Hair-Clay.mp4":"360/640","GRWM-Hotel-Can.mp4":"360/640","GRWM-Lip-Tint.mp4":"360/640","GRWM-Nail-Polish.mp4":"360/640","GRWM-Perfume-2.mp4":"360/640","GRWM-Perfume.mp4":"720/1280","GRWM-Serum.mp4":"720/1280","GRWM-Sunscreen.mp4":"360/640","Product-Detail-Shot.mp4":"720/1280","Social-Edit-1.mp4":"720/1254","Social-Edit-3.mp4":"720/1280","Social-Edit-4.mp4":"480/848","Social-Edit-5.mp4":"834/1112","Social-Edit-6.mp4":"720/1280","Social-Edit-7.mp4":"720/1280"};
+  /* only clips near the screen fetch anything, 15 at once made iPhone give up */
+  var vio = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting) return;
+      var v = e.target; vio.unobserve(v);
+      v.preload = "metadata"; v.src = v.dataset.src + "#t=0.001";
+    });
+  }, {rootMargin: "500px 0px"});
   function makeItem(src){
     var item = document.createElement("div");
     item.className = "lboxitem";
     var v = document.createElement("video");
-    v.src = src; v.controls = true; v.preload = "metadata";
+    v.controls = true; v.preload = "none"; v.playsInline = true;
+    v.setAttribute("playsinline", ""); v.setAttribute("webkit-playsinline", "");
+    v.dataset.src = src;
+    var r = RATIO[src.split("/").pop()]; if(r) v.style.setProperty("--ar", r);
     if(src.indexOf("Social-Edit-5.mp4") > -1) v.className = "fill916";
     item.appendChild(v);
+    vio.observe(v);
     return item;
   }
   function openCat(cat){
@@ -794,6 +837,9 @@ function $(id){return document.getElementById(id);}
     lboxHero.innerHTML = "";
     lboxGrid.innerHTML = "";
   }
+  lbox.addEventListener("play", function(e){
+    lbox.querySelectorAll("video").forEach(function(x){ if(x !== e.target) x.pause(); });
+  }, true);
   lboxClose.addEventListener("click", closeLbox);
   lbox.addEventListener("click", function(e){ if(e.target === lbox) closeLbox(); });
   document.addEventListener("keydown", function(e){ if(e.key === "Escape") closeLbox(); });
@@ -823,6 +869,10 @@ function $(id){return document.getElementById(id);}
   fit();
   window.addEventListener("resize", fit);
   pgCarousel({wrap:"reelWrap", track:"reelTrack", dots:"reelDots"});
+  Array.prototype.forEach.call(track.querySelectorAll("video"), function(v){
+    v.muted = true; v.defaultMuted = true; v.loop = true; v.playsInline = true;
+    var p = v.play(); if(p && p.catch) p.catch(function(){});
+  });
 })();
 
 /* ---------- static ads: shared carousel, center card grows, loops forever ---------- */
@@ -853,7 +903,24 @@ function $(id){return document.getElementById(id);}
     c.appendChild(img);
     track.appendChild(c);
   });
-  pgCarousel({wrap:"adsWrap", track:"adsTrack", dots:"adsDots", minScale:.68, maxScale:1.3});
+  var phone = window.matchMedia("(max-width:734px)").matches;
+  pgCarousel({wrap:"adsWrap", track:"adsTrack", dots:"adsDots", minScale:phone ? 1 : .68, maxScale:phone ? 1 : 1.3});
+  /* phones: carousel height follows the center photo, blending between 2 photos while swiping */
+  if(phone){
+    var wrap = $("adsWrap"), cards = track.children, busy = false;
+    var fitH = function(){
+      busy = false;
+      var m = wrap.scrollLeft + wrap.clientWidth / 2, a = 0;
+      for(var i = 0; i < cards.length; i++) if(cards[i].offsetLeft + cards[i].offsetWidth / 2 <= m) a = i;
+      var b = Math.min(a + 1, cards.length - 1);
+      var ca = cards[a].offsetLeft + cards[a].offsetWidth / 2, cb = cards[b].offsetLeft + cards[b].offsetWidth / 2;
+      var t = cb > ca ? Math.min(1, Math.max(0, (m - ca) / (cb - ca))) : 0;
+      track.style.height = (cards[a].offsetHeight + (cards[b].offsetHeight - cards[a].offsetHeight) * t) + "px";
+    };
+    wrap.addEventListener("scroll", function(){ if(!busy){ busy = true; requestAnimationFrame(fitH); } }, {passive:true});
+    track.addEventListener("load", fitH, true);
+    window.addEventListener("resize", fitH);
+  }
 })();
 })();
 </script>

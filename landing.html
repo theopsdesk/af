@@ -220,8 +220,8 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
       desc:"App screens and mobile sites, designed in Figma and built for real products.",
       items:[
       {label:"Companion App",href:"app-interface.html",live:true},
-      {label:"Pulse",live:false},
-      {label:"Nomad",live:false},
+      {label:"Stride",live:false},
+      {label:"Layover",live:false},
       {label:"Fieldnote",live:false}
     ]}
   ];
@@ -514,6 +514,11 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
 @media(max-width:900px){.au-cslide{flex-basis:calc((var(--cw,800px) - 16px)/2)}}
 @media(max-width:600px){.au-cslide{flex-basis:var(--cw,340px)}}
 .au-cslide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55}
+@media(max-width:600px){
+  .au-cslide{min-height:0;justify-content:flex-start}
+  .au-cslide img{position:static;inset:auto;width:calc(100% + 44px);max-width:none;height:auto;margin:-22px -22px 18px;opacity:1}
+  .au-cslide .ceyebrow{margin-top:auto}
+}
 .au-cslide .au-need{position:absolute;inset:0;display:none;align-items:center;justify-content:center;
   text-align:center;padding:14px;font-size:11px;letter-spacing:.02em;
   color:#a9a9ac;background:repeating-linear-gradient(45deg,#151515,#151515 10px,#000 10px,#000 20px)}
@@ -729,7 +734,7 @@ function pgCarousel(o){
   }
   track.style.position = 'relative';
   var cards = Array.prototype.slice.call(track.children);
-  var dots = [], hits = [], cur = -1, ticking = false, timer = null, idle = null, ready = false, dragging = false;
+  var dots = [], hits = [], cur = -1, ticking = false, clock = null, idle = null, ready = false, dragging = false, touching = false, lastW = wrap.clientWidth;
   if(dotsWrap){
     for(var i = 0; i < N; i++){
       var hit = document.createElement('div'); hit.className = 'pg-indhit'; hit.dataset.idx = i;
@@ -749,7 +754,7 @@ function pgCarousel(o){
   }
   function jump(left){ wrap.scrollTo({left: left, behavior: 'instant'}); }
   function normalize(){
-    if(dragging) return;
+    if(dragging || touching) return;
     var k = Math.floor(nearest() / N);
     if(k !== HOME){ jump(wrap.scrollLeft + (HOME - k) * setW()); render(); }
   }
@@ -779,10 +784,10 @@ function pgCarousel(o){
       var act = nearest() % N;
       if(act !== cur){
         cur = act;
+        /* the pill fill belongs to the clock, so it stays empty until the slide has settled */
+        dots[act].querySelector('.pg-ind-fill').style.animation = 'none';
         dots.forEach(function(d, j){ d.classList.toggle('on', j === act); });
         hits.forEach(function(h, j){ h.classList.toggle('on', j === act); });
-        var fill = dots[act].querySelector('.pg-ind-fill');
-        fill.style.animation = 'none'; void fill.offsetWidth; fill.style.animation = '';
       }
     }
   }
@@ -793,37 +798,60 @@ function pgCarousel(o){
     for(var i = idx % N; i < cards.length; i += N){ var dd = Math.abs(i - b); if(dd < bd){ bd = dd; best = i; } }
     goTo(best, true);
   }
-  function stop(){ if(timer){ clearInterval(timer); timer = null; } }
-  function start(){
-    stop();
-    timer = setInterval(function(){ normalize(); goTo(nearest() + 1, true); }, 4000);
+  /* One clock. The pill fill and the slide timer start together, only once the carousel is at rest,
+     so the pill is full at the exact moment the next slide moves. */
+  function fillEl(){ return dots.length && cur >= 0 ? dots[cur].querySelector('.pg-ind-fill') : null; }
+  function stopClock(){
+    if(clock){ clearTimeout(clock); clock = null; }
+    var f = fillEl(); if(f) f.style.animation = 'none';
   }
+  function startClock(){
+    stopClock();
+    var f = fillEl(); if(f){ void f.offsetWidth; f.style.animation = ''; }
+    clock = setTimeout(function(){
+      clock = null; normalize(); goTo(nearest() + 1, true);
+      clearTimeout(idle); idle = setTimeout(settle, 900);
+    }, 4000);
+  }
+  function settle(){
+    if(!ready || dragging || touching || document.hidden) return;
+    normalize();
+    var b = nearest();
+    if(Math.abs(centerOf(cards[b]) - mid()) > 2){ goTo(b, true); clearTimeout(idle); idle = setTimeout(settle, 900); return; }
+    if(dotsWrap) startClock();
+  }
+  function afterMove(){ clearTimeout(idle); idle = setTimeout(settle, 180); }
   wrap.addEventListener('scroll', function(){
     if(!ticking){ ticking = true; requestAnimationFrame(render); }
-    clearTimeout(idle); idle = setTimeout(normalize, 220);
+    afterMove();
   }, {passive: true});
   if(dotsWrap){
     dotsWrap.addEventListener('click', function(e){
       var t = e.target.closest ? e.target.closest('.pg-indhit') : null;
       if(!t) return;
-      goToIdx(parseInt(t.dataset.idx, 10)); start();
+      stopClock(); goToIdx(parseInt(t.dataset.idx, 10)); afterMove();
     });
     var sx = 0, ss = 0;
     dotsWrap.addEventListener('pointerdown', function(e){
       var t = e.target.closest ? e.target.closest('.pg-indhit') : null;
       if(!t || parseInt(t.dataset.idx, 10) !== cur) return;
-      dragging = true; sx = e.clientX; ss = wrap.scrollLeft; stop();
+      dragging = true; sx = e.clientX; ss = wrap.scrollLeft; stopClock();
       t.setPointerCapture(e.pointerId);
     });
     dotsWrap.addEventListener('pointermove', function(e){
       if(!dragging) return;
       wrap.scrollLeft = ss + (e.clientX - sx) * setW() / dotsWrap.getBoundingClientRect().width;
     });
-    dotsWrap.addEventListener('pointerup', function(){ if(dragging){ dragging = false; start(); } });
-    dotsWrap.addEventListener('pointercancel', function(){ if(dragging){ dragging = false; start(); } });
+    var endDrag = function(){ if(dragging){ dragging = false; afterMove(); } };
+    dotsWrap.addEventListener('pointerup', endDrag);
+    dotsWrap.addEventListener('pointercancel', endDrag);
   }
-  wrap.addEventListener('pointerdown', stop, {passive: true});
-  wrap.addEventListener('pointerup', start, {passive: true});
+  /* A finger swipe ends in pointercancel, not pointerup, so both must hand control back. */
+  wrap.addEventListener('pointerdown', function(){ touching = true; stopClock(); }, {passive: true});
+  var release = function(){ if(touching){ touching = false; afterMove(); } };
+  wrap.addEventListener('pointerup', release, {passive: true});
+  wrap.addEventListener('pointercancel', release, {passive: true});
+  document.addEventListener('visibilitychange', function(){ if(document.hidden) stopClock(); else afterMove(); });
   function home(){ goTo(HOME * N + Math.max(cur, 0), false); render(); }
   var imgs = track.querySelectorAll('img');
   Array.prototype.forEach.call(imgs, function(img){ img.loading = 'eager'; });
@@ -832,9 +860,13 @@ function pgCarousel(o){
       return img.complete ? Promise.resolve() : new Promise(function(res){ img.addEventListener('load', res); img.addEventListener('error', res); });
     })),
     new Promise(function(res){ setTimeout(res, 2500); })
-  ]).then(function(){ ready = true; home(); if(dotsWrap) start(); });
+  ]).then(function(){ ready = true; home(); settle(); });
   Array.prototype.forEach.call(imgs, function(img){ img.addEventListener('load', function(){ if(ready) render(); }); });
-  window.addEventListener('resize', function(){ if(ready) home(); });
+  /* Phones fire resize when the address bar slides. Only a real width change may re-center. */
+  window.addEventListener('resize', function(){
+    if(!ready || wrap.clientWidth === lastW) return;
+    lastW = wrap.clientWidth; home(); afterMove();
+  });
 }
 </script>
 <script>
