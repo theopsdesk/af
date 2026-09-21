@@ -561,7 +561,6 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
   <div class="lboxgrid" id="lboxGrid"></div>
 </div>
 
-<hr class="hr">
 
 <style>
 .cl-section{text-align:center;padding:96px 22px 160px;max-width:520px;margin:0 auto;font-family:var(--sf)}
@@ -573,12 +572,6 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
 .cl-loc{font-size:clamp(14px,1.6vw,19px);color:var(--au-muted);margin:6px 0 0}
 </style>
 
-<div class="cl-section" id="collaborate">
-  <p class="cl-eyebrow">Collaborate with me</p>
-  <h2 class="cl-name">Ahmer Faheem</h2>
-  <a class="cl-email" href="mailto:ahmerfmalik@gmail.com">ahmerfmalik@gmail.com</a>
-  <p class="cl-loc">Bali, Indonesia</p>
-</div>
 
 <script>
 /* Shared carousel, identical on every page. Infinite loop, pill and dot timer, 4 second autoplay.
@@ -881,24 +874,26 @@ function $(id){return document.getElementById(id);}
   var track = $("adsTrack");
   if(!track) return;
   var ADS = [
-    ["assets/static-ads/MOP-Ankh-3.jpg","Mother of Pearl Ankh ad, alternate"],
-    ["assets/static-ads/MOP-Ankh-9.16-1.jpg","Mother of Pearl Ankh ad, story format"],
-    ["assets/static-ads/MOP-Ankh-2.jpg","Mother of Pearl Ankh ad"],
-    ["assets/static-ads/Black-Onyx-Plain.jpg","Black Onyx ring, plain finish ad"],
-    ["assets/static-ads/MOP-Ankh-9.16-2.jpg","Mother of Pearl Ankh ad, story format alternate"],
-    ["assets/static-ads/Black-Onyx-Plain2.jpg","Black Onyx ring, plain finish ad, alternate"],
-    ["assets/static-ads/Onyx-Metatron-s-Cube-Ad-1.jpg","Onyx ring, Metatron's Cube design ad"],
-    ["assets/static-ads/MOP-Ankh-Ad-1.jpg","Mother of Pearl Ankh ad"],
-    ["assets/static-ads/Onyx-Plain-5.jpg","Onyx ring, plain finish ad"],
-    ["assets/static-ads/Onyx-Seed-of-Life.jpg","Onyx ring, Seed of Life design ad"],
-    ["assets/static-ads/MOP-Ankh-Ad-5.jpg","Mother of Pearl Ankh ad"],
-    ["assets/static-ads/Calvin-Klein-1.jpg","Calvin Klein creative"],
-    ["assets/static-ads/Calvin-Klein-4.jpg","Calvin Klein creative, alternate"]
+    ["assets/static-ads/MOP-Ankh-3.jpg","Mother of Pearl Ankh ad, alternate",1120,1400],
+    ["assets/static-ads/MOP-Ankh-9.16-1.jpg","Mother of Pearl Ankh ad, story format",787,1400],
+    ["assets/static-ads/MOP-Ankh-2.jpg","Mother of Pearl Ankh ad",1120,1400],
+    ["assets/static-ads/Black-Onyx-Plain.jpg","Black Onyx ring, plain finish ad",1120,1400],
+    ["assets/static-ads/MOP-Ankh-9.16-2.jpg","Mother of Pearl Ankh ad, story format alternate",787,1400],
+    ["assets/static-ads/Black-Onyx-Plain2.jpg","Black Onyx ring, plain finish ad, alternate",1120,1400],
+    ["assets/static-ads/Onyx-Metatron-s-Cube-Ad-1.jpg","Onyx ring, Metatron's Cube design ad",1120,1400],
+    ["assets/static-ads/MOP-Ankh-Ad-1.jpg","Mother of Pearl Ankh ad",1120,1400],
+    ["assets/static-ads/Onyx-Plain-5.jpg","Onyx ring, plain finish ad",1120,1400],
+    ["assets/static-ads/Onyx-Seed-of-Life.jpg","Onyx ring, Seed of Life design ad",1400,788],
+    ["assets/static-ads/MOP-Ankh-Ad-5.jpg","Mother of Pearl Ankh ad",1120,1400],
+    ["assets/static-ads/Calvin-Klein-1.jpg","Calvin Klein creative",1100,1100],
+    ["assets/static-ads/Calvin-Klein-4.jpg","Calvin Klein creative, alternate",1100,1100]
   ];
   ADS.forEach(function(a){
     var c = document.createElement("div");
     c.className = "adcard";
     var img = document.createElement("img");
+    img.width = a[2];
+    img.height = a[3];
     img.src = a[0];
     img.alt = a[1];
     c.appendChild(img);
