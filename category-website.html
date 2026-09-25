@@ -526,6 +526,10 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
 .pg-ind.on .pg-ind-fill{animation:pgfill 4s linear forwards}
 @keyframes pgfill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 
+.cat-about{max-width:680px;margin:96px auto 0}
+.cat-about h2{font-family:var(--sf);font-size:clamp(28px,3.4vw,40px);font-weight:600;line-height:1.1;letter-spacing:-.01em;color:var(--au-ink);margin:0 0 28px}
+.cat-about p{font-family:var(--sf);font-size:17px;line-height:1.55;color:var(--au-ink);margin:0 0 18px}
+.cat-about .cat-src{font-size:13px;line-height:1.5;color:var(--au-muted);margin:28px 0 0}
 main.au{padding-bottom:96px}
 .cl-eyebrow{font-size:14px;font-weight:500;color:var(--au-muted);margin:0 0 28px}
 .cl-name{font-size:clamp(32px,6vw,72px);font-weight:600;letter-spacing:-.02em;line-height:1.1;margin:0}
@@ -585,6 +589,13 @@ main.au{padding-bottom:96px}
       </div>
     </div>
   </div>
+
+  <section class="cat-about">
+    <h2>Why speed matters</h2>
+    <p>A slow site loses sales before anyone reads a word. Deloitte and Google measured 37 retail brands and found that a 0.1 second faster mobile load raised conversion by 8.4% (data from 2019, the newest rigorous study I found). Mobile is approximately 70% of ecommerce traffic (Contentsquare, 2026). Images are usually the reason pages are heavy, at roughly 36% of the median mobile page's weight (HTTP Archive, 2025).</p>
+    <p>I design for the phone first, then cut image weight until the page loads fast on a normal connection. On my phone first product site, the download went from 6,677 KB to 587 KB.</p>
+    <p class="cat-src">Sources: web.dev, Deloitte and Google study; Contentsquare via Shopify; HTTP Archive Web Almanac 2025.</p>
+  </section>
 
 </div>
 </main>

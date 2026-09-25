@@ -526,6 +526,10 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
 .pg-ind.on .pg-ind-fill{animation:pgfill 4s linear forwards}
 @keyframes pgfill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 
+.cat-about{max-width:680px;margin:96px auto 0}
+.cat-about h2{font-family:var(--sf);font-size:clamp(28px,3.4vw,40px);font-weight:600;line-height:1.1;letter-spacing:-.01em;color:var(--au-ink);margin:0 0 28px}
+.cat-about p{font-family:var(--sf);font-size:17px;line-height:1.55;color:var(--au-ink);margin:0 0 18px}
+.cat-about .cat-src{font-size:13px;line-height:1.5;color:var(--au-muted);margin:28px 0 0}
 main.au{padding-bottom:96px}
 .cl-eyebrow{font-size:14px;font-weight:500;color:var(--au-muted);margin:0 0 28px}
 .cl-name{font-size:clamp(32px,6vw,72px);font-weight:600;letter-spacing:-.02em;line-height:1.1;margin:0}
@@ -587,6 +591,13 @@ main.au{padding-bottom:96px}
       </div>
     </div>
   </div>
+
+  <section class="cat-about">
+    <h2>Why the first screens matter</h2>
+    <p>AppsFlyer's 2025 report found that 46.1% of installed apps are uninstalled within 30 days, most on day one. The first screens decide that. I design in Figma with variables for color and type, light and dark modes, and components with variants, so one change reaches every screen. Text follows the WCAG 4.5:1 contrast rule, and tap targets are at least 44 points.</p>
+    <p>Then I build for the developer. In Figma's 2025 survey, 91% of developers and 92% of designers said handoff could be better. I use Dev Mode so spacing and type can be read straight from the file.</p>
+    <p class="cat-src">Sources: AppsFlyer, 2025; WCAG 2.2; Figma, 2025 survey.</p>
+  </section>
 
 </div>
 </main>
