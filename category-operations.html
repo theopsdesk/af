@@ -527,11 +527,16 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
 @keyframes pgfill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 
 .cat-about{max-width:1180px;margin:96px auto 0;padding:0 34px}
-.cat-about>*{max-width:700px}
-@media(max-width:600px){.cat-about{padding:0 10px}}
-.cat-about h2{font-family:var(--sf);font-size:clamp(26px,3.2vw,34px);font-weight:600;line-height:1.15;letter-spacing:-.01em;color:var(--au-ink);margin:0 0 22px;text-align:left}
-.cat-about p{font-family:var(--sf);font-size:19px;line-height:1.6;color:#515154;margin:0 0 18px;text-align:left}
-.cat-about p strong{color:var(--au-ink);font-weight:600}
+.cat-about h2{font-family:var(--sf);font-size:14px;font-weight:600;letter-spacing:.02em;color:var(--au-muted);margin:0 0 18px;text-align:left}
+.cat-lead{font-family:var(--sf);font-size:clamp(22px,2.5vw,32px);line-height:1.25;font-weight:600;letter-spacing:-.012em;color:#6e6e73;margin:0;text-align:left}
+.cat-lead strong{color:var(--au-ink);font-weight:600}
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:36px 40px;margin:56px 0 0;padding:40px 0 0;border-top:1px solid var(--au-line)}
+.cat-grid h3{font-family:var(--sf);font-size:17px;font-weight:600;color:var(--au-ink);margin:0 0 8px}
+.cat-grid p{font-family:var(--sf);font-size:16px;line-height:1.5;color:#515154;margin:0;text-align:left}
+.cat-tools{font-family:var(--sf);font-size:15px;line-height:1.6;color:#6e6e73;margin:44px 0 0}
+.cat-tools strong{color:var(--au-ink);font-weight:600;margin-right:8px}
+@media(max-width:980px){.cat-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.cat-about{padding:0 10px}.cat-grid{grid-template-columns:1fr;gap:28px}}
 main.au{padding-bottom:96px}
 .cl-eyebrow{font-size:14px;font-weight:500;color:var(--au-muted);margin:0 0 28px}
 .cl-name{font-size:clamp(32px,6vw,72px);font-weight:600;letter-spacing:-.02em;line-height:1.1;margin:0}
@@ -575,16 +580,17 @@ main.au{padding-bottom:96px}
   </div>
 
   <section class="cat-about">
-    <h2>Good operations make good work repeatable.</h2>
-    <p>I run the calendar, the email program, the customer lists and the reporting as <strong>one system</strong>, so what last month showed decides what happens next month.</p>
-    <p>That takes clean, segmented contact data, <strong>written procedures the whole team can follow</strong>, and tools connected so information is entered once. My earlier work in recruiting operations built the same habits: one place for tracking and clear handoffs. The goal is that the owner is only pulled in for decisions that need them.</p>
-  </section>
+  <h2>Operations that keep the work repeatable.</h2>
+  <p class="cat-lead"><strong>I run marketing and business operations as one connected system.</strong> The calendar, the email program, the customer records and the reporting feed each other, so what one month shows decides what the next month does, and leadership sees the picture without chasing it.</p>
+  <div class="cat-grid"><div><h3>Planning</h3><p>Campaign calendars, priorities and weekly routines that let a team know its next move before the day starts.</p></div><div><h3>Email and CRM</h3><p>Klaviyo, Mailchimp and HubSpot programs with segmented lists, tested subject lines and calls to action, and results read against the previous send.</p></div><div><h3>Data hygiene</h3><p>Customer records cleaned, deduplicated and segmented, so campaigns reach active contacts.</p></div><div><h3>Documentation</h3><p>Standard operating procedures written for repeat tasks, with tools connected so data is entered once.</p></div><div><h3>Reporting</h3><p>KPI reporting that turns sales, ad spend, cost per lead and margin into decisions.</p></div><div><h3>Recruiting operations</h3><p>Earlier experience running applicant tracking, interview feedback and hiring pipelines, which built the habit of clear handoffs and one place to track everything.</p></div></div>
+  <p class="cat-tools"><strong>Tools</strong> Klaviyo, Mailchimp, HubSpot, Zendesk, Zoho CRM, Slack, Notion, Asana, ClickUp, Airtable, Google Workspace, Excel, JazzHR, Lever.</p>
+</section>
 
 </div>
 </main>
 <style>
-.opsfoot{background:#f5f5f7;border-top:1px solid #d2d2d7;font:400 13px/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",Arial,sans-serif;color:#6e6e73;text-align:left;clear:both}
-.opsfoot-in{max-width:1180px;margin:0 auto;padding:22px 34px;display:flex;justify-content:space-between;gap:8px 24px;flex-wrap:wrap}
+.opsfoot{background:#f5f5f7;border-top:1px solid #d2d2d7;font:400 13px/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",Arial,sans-serif;color:#6e6e73;text-align:center;clear:both}
+.opsfoot-in{max-width:1180px;margin:0 auto;padding:26px 34px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center}
 .opsfoot b{color:#1d1d1f;font-weight:600;letter-spacing:.04em}
 @media(max-width:600px){.opsfoot-in{padding:20px 22px}}
 </style>

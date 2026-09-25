@@ -554,17 +554,23 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
 </section>
 
 <style>
-.proj-about{max-width:1200px;margin:0 auto;padding:88px 34px 24px;text-align:left}
-.proj-about>*{max-width:680px}
-.proj-about h2{font-family:'EB Garamond',Georgia,serif;font-weight:500;font-size:clamp(26px,3.2vw,36px);line-height:1.15;letter-spacing:-.01em;margin:0 0 22px;color:#141210;text-align:left}
-.proj-about p{font-family:'Newsreader',Georgia,serif;font-size:19px;line-height:1.6;margin:0 0 18px;color:#4a4640;text-align:left}
-.proj-about p strong{color:#141210;font-weight:600}
+.proj-about{max-width:1180px;margin:0 auto;padding:88px 34px 24px;text-align:left}
+.proj-about h2{font-family:'Work Sans',-apple-system,Arial,sans-serif;font-size:14px;font-weight:600;letter-spacing:.02em;color:#8a847c;margin:0 0 18px;text-align:left}
+.proj-lead{font-family:'EB Garamond',Georgia,serif;font-size:clamp(24px,2.7vw,34px);line-height:1.25;font-weight:500;color:#6a655d;margin:0;text-align:left}
+.proj-lead strong{color:#141210;font-weight:600}
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:36px 40px;margin:56px 0 0;padding:40px 0 0;border-top:1px solid #e3e0da}
+.proj-grid h3{font-family:'Work Sans',-apple-system,Arial,sans-serif;font-size:16px;font-weight:600;color:#141210;margin:0 0 8px}
+.proj-grid p{font-family:'Newsreader',Georgia,serif;font-size:18px;line-height:1.5;color:#4a4640;margin:0;text-align:left}
+.proj-tools{font-family:'Newsreader',Georgia,serif;font-size:16px;line-height:1.6;color:#6a655d;margin:44px 0 0}
+.proj-tools strong{color:#141210;font-weight:600;margin-right:8px}
+@media(max-width:980px){.proj-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.proj-about{padding:64px 22px 16px}.proj-grid{grid-template-columns:1fr;gap:28px}}
 </style>
 <section class="proj-about">
   <h2>My work on Charm 2.0</h2>
-  <p>Charm 2.0 is the version where I owned the launch side, working directly with the CEO. I built the Shopify site and run it every day, along with <strong>the reservation page, the quiz and the deposit checkout on Stripe</strong>.</p>
-  <p><strong>Tracking sits behind all of it.</strong> Meta sees every quiz step, scroll and reserve click, and the tracking lives in Shopify's customer events, so a theme change cannot break it. Quiz leads go into Klaviyo and a sheet, and I run the Meta lead campaigns, including retargeting for people who visited and left no email.</p>
-  <p><strong>One n8n dashboard</strong> pulls Shopify, Meta, Klaviyo and Stripe into a single page, so the CEO gets the full picture in one place. I also plan and review the weekly creative and built the animated state wheel for the mobile app in Flutter.</p>
+  <p class="proj-lead"><strong>I owned the launch side of Charm 2.0, working directly with the CEO.</strong> Marketing, the website, the customer systems and the reporting were built together, so a visitor's path from the first ad to a reserved pendant could be seen from end to end.</p>
+  <div class="proj-grid"><div><h3>Website</h3><p>The Shopify site, the reservation page and the quiz that qualifies visitors, built phone first and managed every day.</p></div><div><h3>Checkout</h3><p>The deposit flow on Stripe, connected to a thank you page and to tracking.</p></div><div><h3>Tracking</h3><p>Meta Pixel with custom events for quiz steps, scroll, time on page, reserve clicks and drop off, set in Shopify's customer events so a theme edit cannot break it.</p></div><div><h3>Campaigns</h3><p>Meta lead campaigns across ad sets and creative angles, including retargeting for visitors who left no email.</p></div><div><h3>Email and leads</h3><p>Quiz leads sent to Klaviyo and a sheet by webhook, with email opens and clicks reported back.</p></div><div><h3>Dashboard</h3><p>An n8n dashboard combining Shopify, Meta Ads, Klaviyo and Stripe into one page for the CEO, covering sales, ad spend, cost per lead, ROAS and profit.</p></div><div><h3>Creative</h3><p>Weekly marketing assets planned and reviewed before launch.</p></div><div><h3>Community</h3><p>Charm Circle, the membership community, set up with free and paid access.</p></div><div><h3>App</h3><p>The animated emotion state wheel for the mobile app, built in Flutter and Dart.</p></div></div>
+  <p class="proj-tools"><strong>Tools</strong> Shopify, Liquid, Klaviyo, Stripe, Meta Pixel, Meta Ads Manager, n8n, Cloudflare Workers, Google Apps Script, Flutter, Dart, Figma.</p>
 </section>
 
 <footer>
@@ -651,8 +657,8 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
 })();
 </script>
 <style>
-.opsfoot{background:#f5f5f7;border-top:1px solid #d2d2d7;font:400 13px/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",Arial,sans-serif;color:#6e6e73;text-align:left;clear:both}
-.opsfoot-in{max-width:1180px;margin:0 auto;padding:22px 34px;display:flex;justify-content:space-between;gap:8px 24px;flex-wrap:wrap}
+.opsfoot{background:#f5f5f7;border-top:1px solid #d2d2d7;font:400 13px/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",Arial,sans-serif;color:#6e6e73;text-align:center;clear:both}
+.opsfoot-in{max-width:1180px;margin:0 auto;padding:26px 34px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center}
 .opsfoot b{color:#1d1d1f;font-weight:600;letter-spacing:.04em}
 @media(max-width:600px){.opsfoot-in{padding:20px 22px}}
 </style>

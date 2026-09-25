@@ -527,11 +527,16 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
 @keyframes pgfill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 
 .cat-about{max-width:1180px;margin:96px auto 0;padding:0 34px}
-.cat-about>*{max-width:700px}
-@media(max-width:600px){.cat-about{padding:0 10px}}
-.cat-about h2{font-family:var(--sf);font-size:clamp(26px,3.2vw,34px);font-weight:600;line-height:1.15;letter-spacing:-.01em;color:var(--au-ink);margin:0 0 22px;text-align:left}
-.cat-about p{font-family:var(--sf);font-size:19px;line-height:1.6;color:#515154;margin:0 0 18px;text-align:left}
-.cat-about p strong{color:var(--au-ink);font-weight:600}
+.cat-about h2{font-family:var(--sf);font-size:14px;font-weight:600;letter-spacing:.02em;color:var(--au-muted);margin:0 0 18px;text-align:left}
+.cat-lead{font-family:var(--sf);font-size:clamp(22px,2.5vw,32px);line-height:1.25;font-weight:600;letter-spacing:-.012em;color:#6e6e73;margin:0;text-align:left}
+.cat-lead strong{color:var(--au-ink);font-weight:600}
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:36px 40px;margin:56px 0 0;padding:40px 0 0;border-top:1px solid var(--au-line)}
+.cat-grid h3{font-family:var(--sf);font-size:17px;font-weight:600;color:var(--au-ink);margin:0 0 8px}
+.cat-grid p{font-family:var(--sf);font-size:16px;line-height:1.5;color:#515154;margin:0;text-align:left}
+.cat-tools{font-family:var(--sf);font-size:15px;line-height:1.6;color:#6e6e73;margin:44px 0 0}
+.cat-tools strong{color:var(--au-ink);font-weight:600;margin-right:8px}
+@media(max-width:980px){.cat-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.cat-about{padding:0 10px}.cat-grid{grid-template-columns:1fr;gap:28px}}
 main.au{padding-bottom:96px}
 .cl-eyebrow{font-size:14px;font-weight:500;color:var(--au-muted);margin:0 0 28px}
 .cl-name{font-size:clamp(32px,6vw,72px);font-weight:600;letter-spacing:-.02em;line-height:1.1;margin:0}
@@ -575,16 +580,17 @@ main.au{padding-bottom:96px}
   </div>
 
   <section class="cat-about">
-    <h2>Every ad is made for where it appears.</h2>
-    <p>A vertical video, a square feed image and a story frame each need their own framing. <strong>I plan the set together and produce every size</strong>, so no ad is a crop of another.</p>
-    <p>Production runs weekly with <strong>a review step before anything goes live</strong>, which catches wrong text, wrong sizes and off brand details. I write the copy too, from captions to landing page lines, and use design, video and AI tools where they help.</p>
-  </section>
+  <h2>Creative made for the placement and the person.</h2>
+  <p class="cat-lead"><strong>I produce ad creative as one system, with every format planned together.</strong> A vertical video, a feed image and a story frame are each framed for the way they are seen, and they carry one idea, so the campaign reads as a single voice wherever someone meets it.</p>
+  <div class="cat-grid"><div><h3>Formats</h3><p>Static ads and short video built for each placement, with safe zones respected so captions and buttons never cover the product.</p></div><div><h3>Copy</h3><p>Headlines, captions, emails and landing page lines written by the same person who makes the visuals, so the words and the image agree.</p></div><div><h3>Production</h3><p>Weekly output with a standard review before launch that checks text, size, links and brand details, so mistakes are caught before an audience sees them.</p></div><div><h3>Video</h3><p>Editing, captions and sound for short form video, from founder pieces to product cuts.</p></div><div><h3>AI assisted</h3><p>Image and video generation used where it saves time, then directed and finished by hand to stay on brand.</p></div><div><h3>Testing</h3><p>Angles and versions built to be compared in Meta Ads Manager, so the next round starts from what the data showed.</p></div></div>
+  <p class="cat-tools"><strong>Tools</strong> Photoshop, Illustrator, Lightroom, Figma, Canva, Premiere Pro, DaVinci Resolve, CapCut, Midjourney, Runway, ElevenLabs, Meta Ads Manager, TikTok.</p>
+</section>
 
 </div>
 </main>
 <style>
-.opsfoot{background:#f5f5f7;border-top:1px solid #d2d2d7;font:400 13px/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",Arial,sans-serif;color:#6e6e73;text-align:left;clear:both}
-.opsfoot-in{max-width:1180px;margin:0 auto;padding:22px 34px;display:flex;justify-content:space-between;gap:8px 24px;flex-wrap:wrap}
+.opsfoot{background:#f5f5f7;border-top:1px solid #d2d2d7;font:400 13px/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",Arial,sans-serif;color:#6e6e73;text-align:center;clear:both}
+.opsfoot-in{max-width:1180px;margin:0 auto;padding:26px 34px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center}
 .opsfoot b{color:#1d1d1f;font-weight:600;letter-spacing:.04em}
 @media(max-width:600px){.opsfoot-in{padding:20px 22px}}
 </style>
