@@ -526,10 +526,12 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
 .pg-ind.on .pg-ind-fill{animation:pgfill 4s linear forwards}
 @keyframes pgfill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 
-.cat-about{max-width:680px;margin:96px auto 0}
-.cat-about h2{font-family:var(--sf);font-size:clamp(28px,3.4vw,40px);font-weight:600;line-height:1.1;letter-spacing:-.01em;color:var(--au-ink);margin:0 0 28px}
-.cat-about p{font-family:var(--sf);font-size:17px;line-height:1.55;color:var(--au-ink);margin:0 0 18px}
-.cat-about .cat-src{font-size:13px;line-height:1.5;color:var(--au-muted);margin:28px 0 0}
+.cat-about{max-width:1180px;margin:96px auto 0;padding:0 34px}
+.cat-about>*{max-width:700px}
+@media(max-width:600px){.cat-about{padding:0 10px}}
+.cat-about h2{font-family:var(--sf);font-size:clamp(26px,3.2vw,34px);font-weight:600;line-height:1.15;letter-spacing:-.01em;color:var(--au-ink);margin:0 0 22px;text-align:left}
+.cat-about p{font-family:var(--sf);font-size:19px;line-height:1.6;color:#515154;margin:0 0 18px;text-align:left}
+.cat-about p strong{color:var(--au-ink);font-weight:600}
 main.au{padding-bottom:96px}
 .cl-eyebrow{font-size:14px;font-weight:500;color:var(--au-muted);margin:0 0 28px}
 .cl-name{font-size:clamp(32px,6vw,72px);font-weight:600;letter-spacing:-.02em;line-height:1.1;margin:0}
@@ -591,9 +593,9 @@ main.au{padding-bottom:96px}
   </div>
 
   <section class="cat-about">
-    <h2>A site that does a job</h2>
-    <p>I build websites that work as part of the business, not as a brochure. A store or landing page is designed for the phone first, written in Shopify Liquid and plain HTML, CSS and JavaScript, and connected to the tools behind it: email, payments and tracking.</p>
-    <p>The tracking is the part I care about most. Visitors are followed from the ad click through the quiz to the checkout, so it is clear where people stop. After launch I keep managing the site day to day, because a site left alone drifts.</p>
+    <h2>A site is judged on the phone first.</h2>
+    <p>I build Shopify stores and landing pages for <strong>the phone first</strong>, in Liquid, HTML, CSS and JavaScript, and connect them to the email, payment and tracking tools behind them.</p>
+    <p><strong>Tracking follows a visitor from the ad click through the quiz to checkout</strong>, which shows exactly where people drop off. After launch I keep running the site every day, since a site left alone slowly falls apart.</p>
   </section>
 
 </div>
