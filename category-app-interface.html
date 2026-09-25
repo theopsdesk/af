@@ -527,16 +527,11 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
 @keyframes pgfill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 
 .cat-about{max-width:1180px;margin:96px auto 0;padding:0 34px}
-.cat-about h2{font-family:var(--sf);font-size:14px;font-weight:600;letter-spacing:.02em;color:var(--au-muted);margin:0 0 18px;text-align:left}
 .cat-lead{font-family:var(--sf);font-size:clamp(22px,2.5vw,32px);line-height:1.25;font-weight:600;letter-spacing:-.012em;color:#6e6e73;margin:0;text-align:left}
 .cat-lead strong{color:var(--au-ink);font-weight:600}
-.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:36px 40px;margin:56px 0 0;padding:40px 0 0;border-top:1px solid var(--au-line)}
-.cat-grid h3{font-family:var(--sf);font-size:17px;font-weight:600;color:var(--au-ink);margin:0 0 8px}
-.cat-grid p{font-family:var(--sf);font-size:16px;line-height:1.5;color:#515154;margin:0;text-align:left}
-.cat-tools{font-family:var(--sf);font-size:15px;line-height:1.6;color:#6e6e73;margin:44px 0 0}
-.cat-tools strong{color:var(--au-ink);font-weight:600;margin-right:8px}
-@media(max-width:980px){.cat-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:600px){.cat-about{padding:0 10px}.cat-grid{grid-template-columns:1fr;gap:28px}}
+.cat-body{font-family:var(--sf);font-size:18px;line-height:1.6;font-weight:400;color:#6e6e73;margin:26px 0 0;text-align:left}
+.cat-body strong{color:var(--au-ink);font-weight:600}
+@media(max-width:600px){.cat-about{padding:0 10px}}
 main.au{padding-bottom:96px}
 .cl-eyebrow{font-size:14px;font-weight:500;color:var(--au-muted);margin:0 0 28px}
 .cl-name{font-size:clamp(32px,6vw,72px);font-weight:600;letter-spacing:-.02em;line-height:1.1;margin:0}
@@ -600,20 +595,20 @@ main.au{padding-bottom:96px}
   </div>
 
   <section class="cat-about">
-  <h2>Designed in Figma and tested in code.</h2>
-  <p class="cat-lead"><strong>I design app screens in Figma and carry the important ones into working code.</strong> Each screen is designed for one hand on a phone, with the question of what a person needs at that moment answered before any decoration is added.</p>
-  <div class="cat-grid"><div><h3>System</h3><p>Color, type and spacing kept as shared variables with light and dark modes, so one change reaches every screen.</p></div><div><h3>Components</h3><p>Buttons, cards, lists and tab bars built as components with variants and auto layout.</p></div><div><h3>Build</h3><p>Flutter and Dart for interactive pieces, including the animated emotion state wheel in Charm's mobile app.</p></div><div><h3>Accessibility</h3><p>Contrast and tap targets checked before handoff, and safe areas designed into each frame.</p></div><div><h3>Handoff</h3><p>Spacing and type readable straight from the Figma file in Dev Mode, so a developer builds what was designed.</p></div><div><h3>Prototype</h3><p>Screens brought to life on a real phone, so a decision is made on how it feels in the hand.</p></div></div>
-  <p class="cat-tools"><strong>Tools</strong> Figma, Flutter, Dart, Lovable, HTML, CSS, JavaScript, Photoshop, Illustrator.</p>
+  <p class="cat-lead"><strong>Mobile interfaces designed in Figma, in light and dark modes,</strong> and taken into working code where the design needs to move.</p>
+  <p class="cat-body"><strong>Color, type and spacing live as shared variables</strong>, and buttons, cards, lists and tab bars as components with variants and auto layout, so a single change reaches every screen. Contrast and tap targets are checked and safe areas designed into each frame before handoff, and spacing and type read straight from the file in <strong>Dev Mode</strong>.</p>
+  <p class="cat-body"><strong>Flutter and Dart</strong> turn selected screens into working prototypes, including the <strong>3D animated emotion state wheel</strong> in the TOD mobile app, so decisions are made on how the interface feels in the hand.</p>
 </section>
 
 </div>
 </main>
 <style>
 .opsfoot{background:#f5f5f7;border-top:1px solid #d2d2d7;font:400 13px/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",Arial,sans-serif;color:#6e6e73;text-align:center;clear:both}
-.opsfoot-in{max-width:1180px;margin:0 auto;padding:26px 34px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center}
+.opsfoot-in{max-width:1180px;margin:0 auto;padding:26px 34px;text-align:center}
 .opsfoot b{color:#1d1d1f;font-weight:600;letter-spacing:.04em}
-@media(max-width:600px){.opsfoot-in{padding:20px 22px}}
+.opsfoot-in span{white-space:nowrap}
+@media(max-width:600px){.opsfoot-in{padding:20px 12px}.opsfoot{font-size:12px}}
 </style>
-<div class="opsfoot"><div class="opsfoot-in"><span><b>THE OPS DESK</b>, a project by Ahmer Faheem</span><span>&copy; 2026</span></div></div>
+<div class="opsfoot"><div class="opsfoot-in"><span><b>THE OPS DESK</b>, a project by Ahmer Faheem &copy; 2026</span></div></div>
 </body>
 </html>

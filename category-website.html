@@ -527,16 +527,11 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
 @keyframes pgfill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 
 .cat-about{max-width:1180px;margin:96px auto 0;padding:0 34px}
-.cat-about h2{font-family:var(--sf);font-size:14px;font-weight:600;letter-spacing:.02em;color:var(--au-muted);margin:0 0 18px;text-align:left}
 .cat-lead{font-family:var(--sf);font-size:clamp(22px,2.5vw,32px);line-height:1.25;font-weight:600;letter-spacing:-.012em;color:#6e6e73;margin:0;text-align:left}
 .cat-lead strong{color:var(--au-ink);font-weight:600}
-.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:36px 40px;margin:56px 0 0;padding:40px 0 0;border-top:1px solid var(--au-line)}
-.cat-grid h3{font-family:var(--sf);font-size:17px;font-weight:600;color:var(--au-ink);margin:0 0 8px}
-.cat-grid p{font-family:var(--sf);font-size:16px;line-height:1.5;color:#515154;margin:0;text-align:left}
-.cat-tools{font-family:var(--sf);font-size:15px;line-height:1.6;color:#6e6e73;margin:44px 0 0}
-.cat-tools strong{color:var(--au-ink);font-weight:600;margin-right:8px}
-@media(max-width:980px){.cat-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:600px){.cat-about{padding:0 10px}.cat-grid{grid-template-columns:1fr;gap:28px}}
+.cat-body{font-family:var(--sf);font-size:18px;line-height:1.6;font-weight:400;color:#6e6e73;margin:26px 0 0;text-align:left}
+.cat-body strong{color:var(--au-ink);font-weight:600}
+@media(max-width:600px){.cat-about{padding:0 10px}}
 main.au{padding-bottom:96px}
 .cl-eyebrow{font-size:14px;font-weight:500;color:var(--au-muted);margin:0 0 28px}
 .cl-name{font-size:clamp(32px,6vw,72px);font-weight:600;letter-spacing:-.02em;line-height:1.1;margin:0}
@@ -598,20 +593,20 @@ main.au{padding-bottom:96px}
   </div>
 
   <section class="cat-about">
-  <h2>Built phone first, around the visitor.</h2>
-  <p class="cat-lead"><strong>I start every website on a phone screen and design outward from there.</strong> Before any layout, I work out what a visitor on this specific site needs to see, in what order, and what would make them leave. That shapes the structure, the copy and the checkout, and the desktop version grows from a page that already works in one hand.</p>
-  <div class="cat-grid"><div><h3>Structure</h3><p>Page architecture planned on the phone first: what appears first, how far a visitor scrolls before a decision, and where the action sits within reach of a thumb.</p></div><div><h3>Thinking like the visitor</h3><p>I ask what I would need if I arrived at this site cold. Answers about the product, proof, price, shipping and privacy are placed where the question comes up.</p></div><div><h3>Build</h3><p>Shopify themes in Liquid, custom sections, and landing pages in plain HTML, CSS and JavaScript, with images prepared to load quickly on mobile networks.</p></div><div><h3>Tracking</h3><p>Meta Pixel and custom events across the store, the site and the quiz funnels, so every step from ad click to checkout is measured and drop off points are visible.</p></div><div><h3>Customer systems</h3><p>Klaviyo, quiz lead webhooks, Stripe checkout and Cloudflare Workers connected behind the page, so a submission reaches the right list and a payment lands without manual work.</p></div><div><h3>Ownership</h3><p>I manage the site every day after launch: content changes, fixes, and checks that a theme edit never breaks the tracking.</p></div></div>
-  <p class="cat-tools"><strong>Tools</strong> Shopify, Liquid, HTML, CSS, JavaScript, Klaviyo, Stripe, Meta Pixel, Google Analytics, Cloudflare Workers, Figma.</p>
+  <p class="cat-lead"><strong>Websites designed for the phone first, then extended to the desktop.</strong> Every page begins with what a visitor needs to see, in what order, and what would send them away.</p>
+  <p class="cat-body">Structure comes from the visitor's side: the product, the proof, the price, shipping and privacy answered exactly where the question arises. <strong>Shopify themes in Liquid</strong>, custom sections and landing pages in <strong>HTML, CSS and JavaScript</strong> carry that structure, with images prepared for fast loading on mobile networks.</p>
+  <p class="cat-body"><strong>Meta Pixel and custom events</strong> follow each visit from the ad click through the quiz to checkout, so every drop off point is visible. <strong>Klaviyo, Stripe and Cloudflare Workers</strong> sit behind the page, routing each submission to the right list and each payment to the right place. After launch the site is maintained daily, and the tracking lives in Shopify's customer events, so a theme edit never breaks it.</p>
 </section>
 
 </div>
 </main>
 <style>
 .opsfoot{background:#f5f5f7;border-top:1px solid #d2d2d7;font:400 13px/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",Arial,sans-serif;color:#6e6e73;text-align:center;clear:both}
-.opsfoot-in{max-width:1180px;margin:0 auto;padding:26px 34px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center}
+.opsfoot-in{max-width:1180px;margin:0 auto;padding:26px 34px;text-align:center}
 .opsfoot b{color:#1d1d1f;font-weight:600;letter-spacing:.04em}
-@media(max-width:600px){.opsfoot-in{padding:20px 22px}}
+.opsfoot-in span{white-space:nowrap}
+@media(max-width:600px){.opsfoot-in{padding:20px 12px}.opsfoot{font-size:12px}}
 </style>
-<div class="opsfoot"><div class="opsfoot-in"><span><b>THE OPS DESK</b>, a project by Ahmer Faheem</span><span>&copy; 2026</span></div></div>
+<div class="opsfoot"><div class="opsfoot-in"><span><b>THE OPS DESK</b>, a project by Ahmer Faheem &copy; 2026</span></div></div>
 </body>
 </html>
