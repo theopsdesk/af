@@ -132,6 +132,36 @@ a{color:inherit}
 .calmscr .csquote{font:400 18px 'EB Garamond',Georgia,serif;color:#141210;line-height:1.35;
   margin:0 0 10px;max-width:230px}
 .calmscr .csauthor{font:italic 400 12px 'EB Garamond',Georgia,serif;color:#8a8378;margin:0}
+.calmscr .csstack{position:relative;width:100%;flex:1;margin-top:20px}
+.calmscr .cscard{position:absolute;left:0;right:0;border-radius:20px 20px 0 0;padding:16px 18px 0;
+  box-sizing:border-box;text-align:left;box-shadow:0 -8px 20px -14px rgba(0,0,0,.25)}
+.calmscr .cscard.c1{top:0;height:120px;background:linear-gradient(160deg,#eef0d8,#f7e0c8);z-index:1}
+.calmscr .cscard.c2{top:26px;height:94px;background:linear-gradient(160deg,#f5d8e0,#e8d8f0);z-index:2}
+.calmscr .cslabel{font:600 9px var(--sf,Inter,sans-serif);letter-spacing:.08em;color:#141210;
+  text-transform:uppercase;margin:0 0 4px}
+.calmscr .csline{font:400 15px 'Libre Caslon Display',Georgia,serif;color:#141210;margin:0}
+.momscr{background:#FBF8F3;padding:24px 20px 0;box-sizing:border-box;text-align:left;overflow-y:auto}
+.momscr .msbar{width:100%;display:flex;justify-content:space-between;align-items:center;
+  font:600 13px var(--sf,Inter,sans-serif);color:#141210;margin-bottom:18px}
+.momscr .mshead{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.momscr .mstag{font:600 9px var(--sf,Inter,sans-serif);letter-spacing:.1em;color:#8a8378;text-transform:uppercase}
+.momscr .mstitle{font:400 26px 'Libre Caslon Display',Georgia,serif;color:#141210;margin:0 0 4px}
+.momscr .msdate{font:400 12px var(--sf,Inter,sans-serif);color:#8a8378;margin:0 0 18px}
+.momscr .msbarwrap{height:4px;border-radius:99px;background:linear-gradient(90deg,#8FB9C9,#EDE9E3 55%);margin-bottom:6px}
+.momscr .mstimes{display:flex;justify-content:space-between;font:600 10px var(--sf,Inter,sans-serif);color:#8a8378;margin-bottom:16px}
+.momscr .msactions{display:flex;gap:16px;font:600 10px var(--sf,Inter,sans-serif);letter-spacing:.04em;
+  color:#141210;text-transform:uppercase;margin-bottom:22px}
+.momscr .mslabel{font:700 10px var(--sf,Inter,sans-serif);letter-spacing:.1em;color:#141210;
+  text-transform:uppercase;margin:0 0 8px}
+.momscr .mstext{font:400 12.5px var(--sf,Inter,sans-serif);line-height:1.55;color:#4a4640;margin:0 0 20px}
+.momscr .msdonuts{display:flex;gap:16px;margin-bottom:20px}
+.momscr .msdonut{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;position:relative}
+.momscr .msdonut::before{content:"";position:absolute;inset:8px;background:#FBF8F3;border-radius:50%}
+.momscr .msdonut span{position:relative;font:700 13px var(--sf,Inter,sans-serif);color:#141210}
+.momscr .msdcol{text-align:center}
+.momscr .msdname{font:600 9px var(--sf,Inter,sans-serif);letter-spacing:.04em;color:#8a8378;
+  text-transform:uppercase;margin-top:6px}
 </style>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
@@ -590,8 +620,30 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
         <p class="csqlabel">Quote of the day</p>
         <p class="csquote">Just as you are, right here and now, is the way</p>
         <p class="csauthor">Bankei Yotaku</p>
+        <div class="csstack">
+          <div class="cscard c1"><p class="cslabel">Grounded Focus</p><p class="csline">Steady under pressure</p></div>
+          <div class="cscard c2"><p class="cslabel">Calm Nervous System</p><p class="csline">Breath came back to you</p></div>
+        </div>
       </div><div class="home"></div></div></div>
-      <div class="phbox"><div class="ph"><div class="scr"></div><div class="cl"><img src="assets/app-interface/app-2.webp" alt="App screen, moment detail"></div><div class="home"></div></div></div>
+      <div class="phbox"><div class="ph"><div class="scr"></div><div class="cl momscr">
+        <div class="msbar"><span>9:41</span><span class="csbatt"></span></div>
+        <div class="mshead"><span class="mstag">&lsaquo; Moment Detail</span></div>
+        <h3 class="mstitle">Kitchen Window Pause</h3>
+        <p class="msdate">Tuesday, September 22, 2026 &middot; 21:12</p>
+        <div class="msbarwrap"></div>
+        <div class="mstimes"><span>0:48</span><span>3:02</span></div>
+        <div class="msactions"><span>&#9654; Listen</span><span>&#9776; Transcript</span></div>
+        <p class="mslabel">Summary</p>
+        <p class="mstext">Dishes after dinner, and the noise of the day finally dropped. A small thought surfaced about closing the day with one task instead of a screen.</p>
+        <p class="mslabel">Emotions</p>
+        <div class="msdonuts">
+          <div class="msdcol"><div class="msdonut" style="background:conic-gradient(#8FB9C9 0 74%,#EDE9E3 0 100%)"><span>74%</span></div><p class="msdname">Grounded</p></div>
+          <div class="msdcol"><div class="msdonut" style="background:conic-gradient(#B79FD1 0 61%,#EDE9E3 0 100%)"><span>61%</span></div><p class="msdname">Reflective</p></div>
+          <div class="msdcol"><div class="msdonut" style="background:conic-gradient(#E7A9B8 0 22%,#EDE9E3 0 100%)"><span>22%</span></div><p class="msdname">Restless</p></div>
+        </div>
+        <p class="mslabel">Vibrational Suggestion</p>
+        <p class="mstext">Ending the day with a small repeated task, not a screen, gave the mind room to settle. The same kind of anchor that steadied the walk this morning works just as well at night.</p>
+      </div><div class="home"></div></div></div>
       <div class="phbox"><div class="ph"><div class="scr"></div><div class="cl"><img src="assets/app-interface/app-3.webp" alt="App screen, modes"></div><div class="home"></div></div></div>
       <div class="phbox"><div class="ph"><div class="scr"></div><div class="cl"><img src="assets/app-interface/web-1.webp" alt="Mobile site, opening screen"></div><div class="home"></div></div></div>
       <div class="phbox"><div class="ph"><div class="scr"></div><div class="cl"><img src="assets/app-interface/web-2.webp" alt="Mobile site, product detail"></div><div class="home"></div></div></div>
