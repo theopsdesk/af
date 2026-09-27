@@ -132,14 +132,18 @@ a{color:inherit}
 .calmscr .csquote{font:400 18px 'EB Garamond',Georgia,serif;color:#141210;line-height:1.35;
   margin:0 0 10px;max-width:230px}
 .calmscr .csauthor{font:italic 400 12px 'EB Garamond',Georgia,serif;color:#8a8378;margin:0}
-.calmscr .csstack{position:relative;width:100%;flex:1;margin-top:20px}
-.calmscr .cscard{position:absolute;left:0;right:0;border-radius:20px 20px 0 0;padding:16px 18px 0;
-  box-sizing:border-box;text-align:left;box-shadow:0 -8px 20px -14px rgba(0,0,0,.25)}
-.calmscr .cscard.c1{top:0;height:120px;background:linear-gradient(160deg,#eef0d8,#f7e0c8);z-index:1}
-.calmscr .cscard.c2{top:26px;height:94px;background:linear-gradient(160deg,#f5d8e0,#e8d8f0);z-index:2}
-.calmscr .cslabel{font:600 9px var(--sf,Inter,sans-serif);letter-spacing:.08em;color:#141210;
-  text-transform:uppercase;margin:0 0 4px}
-.calmscr .csline{font:400 15px 'Libre Caslon Display',Georgia,serif;color:#141210;margin:0}
+.calmscr .csstack{position:relative;width:100%;height:210px;margin-top:22px;flex:0 0 auto}
+.calmscr .cscard{position:absolute;left:0;right:0;border-radius:18px 18px 0 0;
+  box-sizing:border-box;text-align:left;box-shadow:0 -10px 24px -18px rgba(0,0,0,.3)}
+.calmscr .cscard.c1{bottom:0;height:210px;padding:18px 18px 0;z-index:4;
+  background:linear-gradient(115deg,#f7f7f7 22%,#f7cf9c)}
+.calmscr .cscard.c2{bottom:16px;height:28px;z-index:3;background:linear-gradient(115deg,#f7f7f7 22%,#e9b8cf)}
+.calmscr .cscard.c3{bottom:30px;height:22px;z-index:2;background:linear-gradient(115deg,#f7f7f7 22%,#b9d3ec)}
+.calmscr .cscard.c4{bottom:42px;height:18px;z-index:1;background:linear-gradient(115deg,#f7f7f7 22%,#c7e3c0)}
+.calmscr .cslabel{font:700 9px var(--sf,Inter,sans-serif);letter-spacing:.08em;color:#141210;
+  text-transform:uppercase;margin:0 0 5px}
+.calmscr .csline{font:400 19px 'Libre Caslon Display',Georgia,serif;color:#141210;margin:0 0 8px}
+.calmscr .csbody{font:400 11.5px var(--sf,Inter,sans-serif);line-height:1.5;color:#4a4640;margin:0}
 .momscr{background:#FBF8F3;padding:24px 20px 0;box-sizing:border-box;text-align:left;overflow-y:auto}
 .momscr .msbar{width:100%;display:flex;justify-content:space-between;align-items:center;
   font:600 13px var(--sf,Inter,sans-serif);color:#141210;margin-bottom:18px}
@@ -154,6 +158,7 @@ a{color:inherit}
 .momscr .mslabel{font:700 10px var(--sf,Inter,sans-serif);letter-spacing:.1em;color:#141210;
   text-transform:uppercase;margin:0 0 8px}
 .momscr .mstext{font:400 12.5px var(--sf,Inter,sans-serif);line-height:1.55;color:#4a4640;margin:0 0 20px}
+.momscr .mschart{width:100%;height:50px;margin-bottom:20px;display:block}
 .momscr .msdonuts{display:flex;gap:16px;margin-bottom:20px}
 .momscr .msdonut{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;
   justify-content:center;position:relative}
@@ -621,8 +626,14 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
         <p class="csquote">Just as you are, right here and now, is the way</p>
         <p class="csauthor">Bankei Yotaku</p>
         <div class="csstack">
-          <div class="cscard c1"><p class="cslabel">Grounded Focus</p><p class="csline">Steady under pressure</p></div>
-          <div class="cscard c2"><p class="cslabel">Calm Nervous System</p><p class="csline">Breath came back to you</p></div>
+          <div class="cscard c4"></div>
+          <div class="cscard c3"></div>
+          <div class="cscard c2"></div>
+          <div class="cscard c1">
+            <p class="cslabel">Calm Nervous System</p>
+            <p class="csline">I am calm</p>
+            <p class="csbody">You stayed grounded in the moment, letting the feeling settle instead of rushing to fix it.</p>
+          </div>
         </div>
       </div><div class="home"></div></div></div>
       <div class="phbox"><div class="ph"><div class="scr"></div><div class="cl momscr">
@@ -634,7 +645,14 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
         <div class="mstimes"><span>0:48</span><span>3:02</span></div>
         <div class="msactions"><span>&#9654; Listen</span><span>&#9776; Transcript</span></div>
         <p class="mslabel">Summary</p>
-        <p class="mstext">Dishes after dinner, and the noise of the day finally dropped. A small thought surfaced about closing the day with one task instead of a screen.</p>
+        <p class="mstext">Dishes after dinner, and the noise of the day finally dropped. A small thought surfaced about closing the day with one task instead of a screen. The water running was the only sound for a while, and nothing needed a reply.</p>
+        <p class="mslabel">Today's Drift</p>
+        <svg class="mschart" viewBox="0 0 280 56" preserveAspectRatio="none" aria-hidden="true">
+          <polyline points="0,40 40,30 80,34 120,18 160,24 200,10 240,16 280,6" fill="none" stroke="#B79FD1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polyline>
+          <circle cx="0" cy="40" r="2.4" fill="#8FB9C9"></circle>
+          <circle cx="120" cy="18" r="2.4" fill="#8FB9C9"></circle>
+          <circle cx="280" cy="6" r="2.4" fill="#8FB9C9"></circle>
+        </svg>
         <p class="mslabel">Emotions</p>
         <div class="msdonuts">
           <div class="msdcol"><div class="msdonut" style="background:conic-gradient(#8FB9C9 0 74%,#EDE9E3 0 100%)"><span>74%</span></div><p class="msdname">Grounded</p></div>
