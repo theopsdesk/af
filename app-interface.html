@@ -124,12 +124,12 @@ a{color:inherit}
 .calmscr .csdate{font:600 9px var(--sf,Inter,sans-serif);letter-spacing:.08em;color:#8a8378;
   text-transform:uppercase;margin-bottom:12px}
 .calmscr .cstitle{font:400 36px 'Libre Caslon Display',Georgia,serif;color:#141210;margin:0 0 22px}
-.calmscr .csorb{width:155px;height:155px;border-radius:50%;margin-bottom:26px;
+.calmscr .csorb{width:155px;height:155px;border-radius:50%;margin-bottom:26px;position:relative;
   background:conic-gradient(from 200deg,#f7e0c8,#d8e8f5,#e8d8f0,#f5d8e0,#eef0d8,#f7e0c8);
-  filter:blur(.3px)}
-.calmscr .csqcard{width:100%;background:#fff;border-radius:20px;padding:22px 20px;
-  box-sizing:border-box;box-shadow:0 16px 32px -18px rgba(60,50,40,.28),0 2px 8px -2px rgba(60,50,40,.1);
-  margin-bottom:4px}
+  box-shadow:inset -14px -16px 30px rgba(80,60,40,.35),inset 10px 12px 22px rgba(255,255,255,.7),
+    0 18px 26px -10px rgba(80,60,40,.4)}
+.calmscr .csorb::before{content:"";position:absolute;top:14%;left:16%;width:38%;height:32%;
+  border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.85),rgba(255,255,255,0) 70%)}
 .calmscr .csqlabel{font:600 9px var(--sf,Inter,sans-serif);letter-spacing:.1em;color:#8a8378;
   text-transform:uppercase;margin:0 0 12px}
 .calmscr .csquote{font:400 18px 'EB Garamond',Georgia,serif;color:#141210;line-height:1.35;
@@ -654,13 +654,11 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
         <div class="csbar"><span>9:41</span><span class="csbatt"></span></div>
         <div class="cstabs"><span class="cstab on">Expression</span><span class="cstab">Moments</span></div>
         <div class="csdate">&lsaquo; Monday 16th Feb 2026 &rsaquo;</div>
-        <h3 class="cstitle">Calm</h3>
+        <h3 class="cstitle">Presence</h3>
         <div class="csorb"></div>
-        <div class="csqcard">
-          <p class="csqlabel">Quote of the day</p>
-          <p class="csquote">The quieter you become, the more you can hear</p>
-          <p class="csauthor">Ram Dass</p>
-        </div>
+        <p class="csqlabel">Quote of the day</p>
+        <p class="csquote">Almost everything will work again if you unplug it for a few minutes, including you</p>
+        <p class="csauthor">Anne Lamott</p>
         <div class="csstack">
           <div class="cscard c4"><div class="cry"></div></div>
           <div class="cscard c3"><div class="cry"></div></div>
