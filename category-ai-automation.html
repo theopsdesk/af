@@ -451,6 +451,8 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
   overflow:hidden;background:#e8e8ea;min-height:120px}
 .au-media img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0}
 .au-media.fit img{object-fit:contain}
+.au-media.vig::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  box-shadow:inset 0 0 70px 30px #000}
 .au-media .au-need{display:none;position:absolute;inset:0;align-items:center;justify-content:center;
   text-align:center;padding:14px;font-size:11px;letter-spacing:.02em;
   color:#4d4d51;background:repeating-linear-gradient(45deg,#eee,#eee 10px,#e2e2e4 10px,#e2e2e4 20px)}
@@ -594,7 +596,7 @@ main.au{padding-bottom:96px}
       <h2>TOD Community</h2>
       <p class="sub">A private members community, not public yet.</p>
       <div class="au-actions"><button type="button" class="au-btn" onclick="openGate('Charm Community')">Requires Access</button></div>
-      <div class="au-media">
+      <div class="au-media vig">
         <img src="assets/landing/tod-community.jpg" alt="" loading="lazy" onerror="this.closest('.au-media').classList.add('au-noimg')">
         <div class="au-need">assets/landing/tod-community.jpg</div>
       </div>
