@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
 <style>
 :root{
   --paper:#FFFFFF; --ink:#171514; --muted:#78736C; --rule:#E3E0DA; --red:#E8462A;
@@ -109,15 +110,28 @@ a{color:inherit}
 .ph img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
 .ph .home{position:absolute;bottom:9px;left:50%;transform:translateX(-50%);width:36%;height:4px;
   background:#000;border-radius:99px;opacity:.75;z-index:11}
-.ph.hw .scr{border-radius:54px;box-shadow:0 0 0 3px #3a3a3c,0 0 0 6px #1c1c1e,0 0 0 7.5px #0a0a0a,0 46px 90px -30px rgba(0,0,0,.55)}
-.ph.hw .cl{border-radius:54px}
-.ph.hw .di{position:absolute;top:14px;left:50%;transform:translateX(-50%);width:34%;height:26px;background:#000;border-radius:20px;z-index:12}
-.ph.hw .btn{position:absolute;background:#2c2c2e;z-index:1}
-.ph.hw .btn.action{left:-3px;top:110px;width:3px;height:30px;border-radius:2px 0 0 2px}
-.ph.hw .btn.volup{left:-3px;top:160px;width:3px;height:50px;border-radius:2px 0 0 2px}
-.ph.hw .btn.voldn{left:-3px;top:220px;width:3px;height:50px;border-radius:2px 0 0 2px}
-.ph.hw .btn.power{right:-3px;top:175px;width:3px;height:75px;border-radius:0 2px 2px 0}
 .pg-carousel.phones{padding:48px 0 72px}
+.calmscr{background:#FBF8F3;display:flex;flex-direction:column;align-items:center;
+  padding:26px 22px 0;box-sizing:border-box;text-align:center}
+.calmscr .csbar{width:100%;display:flex;justify-content:space-between;align-items:center;
+  font:600 13px var(--sf,Inter,sans-serif);color:#141210;margin-bottom:16px}
+.calmscr .csbatt{width:20px;height:10px;border:1px solid #141210;border-radius:2px;position:relative}
+.calmscr .csbatt::after{content:"";position:absolute;inset:1.5px;width:70%;background:#141210;border-radius:1px}
+.calmscr .cstabs{display:flex;gap:6px;margin-bottom:24px}
+.calmscr .cstab{font:600 10px var(--sf,Inter,sans-serif);letter-spacing:.03em;padding:6px 13px;
+  border-radius:99px;color:#141210}
+.calmscr .cstab.on{background:#141210;color:#fff}
+.calmscr .csdate{font:600 9px var(--sf,Inter,sans-serif);letter-spacing:.08em;color:#8a8378;
+  text-transform:uppercase;margin-bottom:12px}
+.calmscr .cstitle{font:400 36px 'Libre Caslon Display',Georgia,serif;color:#141210;margin:0 0 22px}
+.calmscr .csorb{width:155px;height:155px;border-radius:50%;margin-bottom:26px;
+  background:conic-gradient(from 200deg,#f7e0c8,#d8e8f5,#e8d8f0,#f5d8e0,#eef0d8,#f7e0c8);
+  filter:blur(.3px)}
+.calmscr .csqlabel{font:600 9px var(--sf,Inter,sans-serif);letter-spacing:.1em;color:#8a8378;
+  text-transform:uppercase;margin:0 0 12px}
+.calmscr .csquote{font:400 18px 'EB Garamond',Georgia,serif;color:#141210;line-height:1.35;
+  margin:0 0 10px;max-width:230px}
+.calmscr .csauthor{font:italic 400 12px 'EB Garamond',Georgia,serif;color:#8a8378;margin:0}
 </style>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
@@ -567,10 +581,18 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
 <div class="pg-wrap">
   <div class="pg-carousel phones" id="pgWrap">
     <div class="pg-ctrack" id="pgTrack">
-      <div class="phbox"><div class="ph hw"><div class="scr"></div><div class="cl"><img src="assets/app-interface/app-1.webp" alt="App screen, expression"></div><div class="di"></div><div class="btn action"></div><div class="btn volup"></div><div class="btn voldn"></div><div class="btn power"></div><div class="home"></div></div></div>
+      <div class="phbox"><div class="ph"><div class="scr"></div><div class="cl calmscr">
+        <div class="csbar"><span>9:41</span><span class="csbatt"></span></div>
+        <div class="cstabs"><span class="cstab on">Expression</span><span class="cstab">Moments</span></div>
+        <div class="csdate">&lsaquo; Monday 16th Feb 2026 &rsaquo;</div>
+        <h3 class="cstitle">Calm</h3>
+        <div class="csorb"></div>
+        <p class="csqlabel">Quote of the day</p>
+        <p class="csquote">Just as you are, right here and now, is the way</p>
+        <p class="csauthor">Bankei Yotaku</p>
+      </div><div class="home"></div></div></div>
       <div class="phbox"><div class="ph"><div class="scr"></div><div class="cl"><img src="assets/app-interface/app-2.webp" alt="App screen, moment detail"></div><div class="home"></div></div></div>
       <div class="phbox"><div class="ph"><div class="scr"></div><div class="cl"><img src="assets/app-interface/app-3.webp" alt="App screen, modes"></div><div class="home"></div></div></div>
-      <div class="phbox"><div class="ph hw"><div class="scr"></div><div class="cl"><img src="assets/app-interface/app-4.webp" alt="App screen, focused mode"></div><div class="di"></div><div class="btn action"></div><div class="btn volup"></div><div class="btn voldn"></div><div class="btn power"></div><div class="home"></div></div></div>
       <div class="phbox"><div class="ph"><div class="scr"></div><div class="cl"><img src="assets/app-interface/web-1.webp" alt="Mobile site, opening screen"></div><div class="home"></div></div></div>
       <div class="phbox"><div class="ph"><div class="scr"></div><div class="cl"><img src="assets/app-interface/web-2.webp" alt="Mobile site, product detail"></div><div class="home"></div></div></div>
       <div class="phbox"><div class="ph"><div class="scr"></div><div class="cl"><img src="assets/app-interface/web-3.webp" alt="Mobile site, product chooser"></div><div class="home"></div></div></div>
