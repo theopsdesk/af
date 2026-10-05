@@ -408,10 +408,10 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
   pointer-events:none;-webkit-user-drag:none;user-select:none}
 /* Name sits centered over the photo. Letters crossing the figure (a soft band at the horizontal center)
    crossfade from sharp to a blurred glow. --iw is the rendered photo width, the band scales with it. */
-.au-hero{--iw:max(100vw,calc((100vh - 44px)*1.778));--core:calc(var(--iw)*.05);--fade:calc(var(--iw)*.1)}
+.au-hero{--iw:max(100vw,calc((100vh - 44px)*1.778));--core:calc(var(--iw)*.035);--fade:calc(var(--iw)*.07)}
 .au-hero .au-top{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;justify-content:center;text-align:center}
 .au-hero .w-sharp{display:block;-webkit-mask-image:linear-gradient(90deg,#000 calc(50% - var(--fade)),transparent calc(50% - var(--core)),transparent calc(50% + var(--core)),#000 calc(50% + var(--fade)));mask-image:linear-gradient(90deg,#000 calc(50% - var(--fade)),transparent calc(50% - var(--core)),transparent calc(50% + var(--core)),#000 calc(50% + var(--fade)))}
-.au-hero .w-mist{position:absolute;inset:0;display:block;color:#fff;opacity:.8;filter:blur(5px);text-shadow:0 0 30px rgba(255,255,255,.6);-webkit-mask-image:linear-gradient(90deg,transparent calc(50% - var(--fade)),#000 calc(50% - var(--core)),#000 calc(50% + var(--core)),transparent calc(50% + var(--fade)));mask-image:linear-gradient(90deg,transparent calc(50% - var(--fade)),#000 calc(50% - var(--core)),#000 calc(50% + var(--core)),transparent calc(50% + var(--fade)))}
+.au-hero .w-mist{position:absolute;inset:-.5em 0;padding:.5em 0;display:block;color:#fff;opacity:.8;filter:blur(4px);text-shadow:0 0 30px rgba(255,255,255,.6);-webkit-mask-image:linear-gradient(90deg,transparent calc(50% - var(--fade)),#000 calc(50% - var(--core)),#000 calc(50% + var(--core)),transparent calc(50% + var(--fade)));mask-image:linear-gradient(90deg,transparent calc(50% - var(--fade)),#000 calc(50% - var(--core)),#000 calc(50% + var(--core)),transparent calc(50% + var(--fade)))}
 .au-hero .au-role .w-mist{filter:blur(1.5px);opacity:.9;text-shadow:0 0 14px rgba(255,255,255,.7)}
 .au-hero .au-word{position:relative;margin:0;text-align:center;
   pointer-events:none;font-family:Archivo,"Helvetica Neue",Arial,sans-serif;font-weight:900;font-stretch:125%;
