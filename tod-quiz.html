@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The TOD Reading</title>
+<title>The AF Reading</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,"system-ui","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;color:#141210;background:#0d0d0f}
@@ -203,8 +203,8 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
     {cat:"Website",page:"category-website.html",
       desc:"Most recent websites and landing pages, built for the premium experience.",
       items:[
-      {label:"TOD 1.0",href:"charm-1-0.html",live:true},
-      {label:"TOD 2.0",href:"charm-2-0.html",live:true},
+      {label:"AF 1.0",href:"charm-1-0.html",live:true},
+      {label:"AF 2.0",href:"charm-2-0.html",live:true},
       {label:"Euphoria",href:"euphoria.html",live:true},
       {label:"Confidential",href:"confidential.html",live:true}
     ]},
@@ -219,7 +219,7 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
         {name:"Workflows",items:[
           {label:"Workflows and Agents",href:"workflows-and-agents.html",live:true},
           {label:"JobPipeline",href:"jobpipeline.html",live:true},
-          {label:"TOD Community",live:false}
+          {label:"AF Community",live:false}
         ]}
       ]},
     {cat:"Creatives",page:"category-creatives.html",
@@ -422,8 +422,8 @@ body.mnav-open .mnav-sec{opacity:1;transform:none}
 <section class="splash" id="splashStage">
   <img src="assets/quiz/splash-pendant.webp" alt="">
   <div class="splash-in">
-    <div class="eyebrow">THE TOD REFLECTION</div>
-    <h1>Begin the 4-Minute <em>TOD Initiation</em></h1>
+    <div class="eyebrow">THE AF REFLECTION</div>
+    <h1>Begin the 4-Minute <em>AF Initiation</em></h1>
     <p>Discover the patterns shaping how you express yourself, what feels blocked, and who you are becoming.</p>
     <button class="cta" id="beginBtn"><span>BEGIN MY REFLECTION</span> &rarr;</button>
     <ul class="trust"><li>PERSONALIZED</li><li>2,644+ HUMANS REFLECTED ON THEIR PATTERNS</li></ul>
@@ -439,19 +439,19 @@ var STEPS = [
   {id:"name",kind:"short_text",question:"What name do you go by in this life?",placeholder:"Your name",required:true},
   {id:"birth_date",kind:"date",question:"When were you born?",subtext:"We use your birth date to deepen your reading.",required:true},
   {id:"gender_identity",kind:"single",question:"Which option best represents you?",autoAdvance:true,options:[{id:"female",label:"Female"},{id:"male",label:"Male"},{id:"other",label:"Other"},{id:"prefer_not_to_say",label:"Prefer not to say"}]},
-  {id:"tod_curiosity",kind:"long_text",question:"What made you curious about TOD?",placeholder:"Share what drew you here...",required:true},
-  {id:"break_sacred_objects",kind:"story",title:"Sacred Objects Have Always Chosen Their Owners",paras:["Across history, people of influence have worn objects that carried more than beauty, pieces that anchored intention, marked transformation, and reflected inner knowing.","TOD continues this lineage, not as an accessory, but as a mirror that listens more deeply than most.","This isn't just wellness. It's a sacred reflection for those who are ready to expand their sense of self."],image:"https://mycharm.ai/cdn/shop/files/charm-quiz-break-sacred-objects.png?v=1786616624&width=600"},
+  {id:"tod_curiosity",kind:"long_text",question:"What made you curious about AF?",placeholder:"Share what drew you here...",required:true},
+  {id:"break_sacred_objects",kind:"story",title:"Sacred Objects Have Always Chosen Their Owners",paras:["Across history, people of influence have worn objects that carried more than beauty, pieces that anchored intention, marked transformation, and reflected inner knowing.","AF continues this lineage, not as an accessory, but as a mirror that listens more deeply than most.","This isn't just wellness. It's a sacred reflection for those who are ready to expand their sense of self."],image:"https://mycharm.ai/cdn/shop/files/charm-quiz-break-sacred-objects.png?v=1786616624&width=600"},
   {id:"current_block",kind:"long_text",question:"What feels most blocked in your life right now?",subtext:"Do not overthink it. Write what feels true.",placeholder:"Write what feels true...",required:true},
   {id:"dream_life",kind:"multi",question:"When you imagine your dream life, what stands out most?",subtext:"Select all that make your heart pound.",required:true,options:[{id:"freedom",label:"Freedom, I live on my own terms"},{id:"love",label:"Love, I feel deeply seen"},{id:"impact",label:"Impact, I make a meaningful difference"},{id:"abundance",label:"Abundance, I feel supported and expansive"},{id:"peace",label:"Peace, I feel grounded within myself"},{id:"expression",label:"Self expression, I share who I really am"},{id:"adventure",label:"Adventure, I experience more aliveness"},{id:"purpose",label:"Purpose, I live in deeper alignment"}]},
   {id:"resonant_patterns",kind:"multi",question:"Which of these resonate with you?",subtext:"Select all that feel true.",required:true,options:[{id:"overthink",label:"I overthink conversations long after they end"},{id:"smaller",label:"I make myself smaller around certain people"},{id:"boundaries",label:"I struggle to express clear boundaries"},{id:"suppress",label:"I suppress what I feel to preserve harmony"},{id:"react",label:"I react intensely and regret it afterward"},{id:"judged",label:"I lose connection with myself when I feel judged"},{id:"misunderstood",label:"I feel misunderstood even when I try to explain myself"},{id:"reassurance",label:"I seek reassurance before trusting my own perception"},{id:"embody",label:"I have big visions but struggle to embody them consistently"},{id:"repeat",label:"I understand my patterns intellectually but still repeat them"},{id:"none",label:"None of these feel particularly present for me"}]},
   {id:"unspoken_truth",kind:"long_text",question:"What do you wish other people could hear, even when you do not know how to say it?",subtext:"Your answer remains private.",placeholder:"Say it here...",required:true},
-  {id:"break_mirror",kind:"story",title:"\"TOD is like a mirror for how I'm showing up\"",lede:"How early users described this new technology",paras:["\"I didn't realize my voice was revealing so much about my emotions. TOD showed me what I couldn't see about myself.\"","\"Wearing TOD feels like a mirror. I can finally play again with my own power moment to moment.\"","\"It made me realize my voice isn't just expression, it's how my identity goes out into the world.\""],image:"https://mycharm.ai/cdn/shop/files/charm-quiz-break-mirror.webp?v=1786616916&width=600"},
+  {id:"break_mirror",kind:"story",title:"\"AF is like a mirror for how I'm showing up\"",lede:"How early users described this new technology",paras:["\"I didn't realize my voice was revealing so much about my emotions. AF showed me what I couldn't see about myself.\"","\"Wearing AF feels like a mirror. I can finally play again with my own power moment to moment.\"","\"It made me realize my voice isn't just expression, it's how my identity goes out into the world.\""],image:"https://mycharm.ai/cdn/shop/files/charm-quiz-break-mirror.webp?v=1786616916&width=600"},
   {id:"state_awareness",kind:"single",question:"How quickly do you notice a change in your state before it becomes a reaction?",subtext:"For example: changes in your breathing, tension, heart rate, thoughts or voice.",autoAdvance:true,options:[{id:"immediately",label:"Almost immediately, I catch it early"},{id:"when_intense",label:"Sometimes, usually when it becomes intense"},{id:"after_reacting",label:"Usually after I have already reacted"},{id:"others_first",label:"Other people often recognize it before I do"},{id:"unsure",label:"I am not sure what changes in my body"}]},
   {id:"becoming_self",kind:"long_text",question:"Who are you becoming when you are unapologetically yourself?",subtext:"Describe the version of you who no longer holds back.",placeholder:"Describe them...",required:true},
   {id:"life_flow",kind:"single",question:"How often do good things just \"fall into your lap\"?",autoAdvance:true,options:[{id:"almost_never",label:"Almost never"},{id:"once_in_a_while",label:"Once in a while"},{id:"sometimes",label:"Sometimes"},{id:"pretty_often",label:"Pretty often"},{id:"all_the_time",label:"All the time"}]},
   {id:"break_voice_future",kind:"story",title:"Your Voice Is Already Rehearsing Your Future",paras:["The way you speak does more than reveal how you feel.","It reveals the state from which you are creating, relating and choosing.","The final questions are not about who you have been.","They are about what you are ready to strengthen."],image:"https://mycharm.ai/cdn/shop/files/charm-quiz-break-voice-future.webp?v=1786617149&width=600"},
-  {id:"ninety_day_intention",kind:"long_text",question:"If TOD amplified one part of you in the next 90 days, what would it be?",subtext:"Be specific. Vague intentions create vague results.",placeholder:"Name what you want strengthened...",required:true},
-  {id:"reflection_commitment",kind:"single",question:"Will you allow TOD to reflect you honestly, even when the pattern it reveals is uncomfortable?",continueLabel:"Complete my initiation",options:[{id:"ready",label:"Yes, I am ready to see myself clearly"},{id:"nervous",label:"Yes, although part of me feels nervous"},{id:"gently",label:"I am curious, but I would want to move gently"},{id:"not_yet",label:"I am not sure I am ready for that yet"}]}
+  {id:"ninety_day_intention",kind:"long_text",question:"If AF amplified one part of you in the next 90 days, what would it be?",subtext:"Be specific. Vague intentions create vague results.",placeholder:"Name what you want strengthened...",required:true},
+  {id:"reflection_commitment",kind:"single",question:"Will you allow AF to reflect you honestly, even when the pattern it reveals is uncomfortable?",continueLabel:"Complete my initiation",options:[{id:"ready",label:"Yes, I am ready to see myself clearly"},{id:"nervous",label:"Yes, although part of me feels nervous"},{id:"gently",label:"I am curious, but I would want to move gently"},{id:"not_yet",label:"I am not sure I am ready for that yet"}]}
 ];
 
 var i = 0;
@@ -543,7 +543,7 @@ function renderStory(s){
 function renderResults(){
   card.parentElement.innerHTML =
     '<div class="results">'+
-    '<div class="eyebrow">YOUR TOD REFLECTION</div>'+
+    '<div class="eyebrow">YOUR AF REFLECTION</div>'+
     '<h1>The pattern is starting to show.</h1>'+
     '<div class="rescard">'+
       '<div class="eyebrow">THE EMERGING SELF</div>'+
@@ -553,8 +553,8 @@ function renderResults(){
       '<h3>The Embodiment Gap</h3>'+
       '<p>A recurring pattern may be that your vision is clearer than your daily expression. You know the shape of the person you are becoming, yet ordinary days pull you back into a smaller version.</p>'+
     '</div>'+
-    '<div class="note">This is a portfolio demo of the reading flow. In the live product, TOD builds this reflection from your actual answers and voice patterns, one of 5 possible profiles.</div>'+
-    '<a class="cta" style="color:#fff" href="charm-2-0.html">Continue To TOD &rarr;</a>'+
+    '<div class="note">This is a portfolio demo of the reading flow. In the live product, AF builds this reflection from your actual answers and voice patterns, one of 5 possible profiles.</div>'+
+    '<a class="cta" style="color:#fff" href="charm-2-0.html">Continue To AF &rarr;</a>'+
     '</div>';
 }
 </script>
@@ -565,6 +565,6 @@ function renderResults(){
 .opsfoot-in span{white-space:nowrap}
 @media(max-width:600px){.opsfoot-in{padding:20px 12px}.opsfoot{font-size:12px}}
 </style>
-<div class="opsfoot"><div class="opsfoot-in"><span><b>THE OPS DESK</b>, a project by Ahmer Faheem &copy; 2026</span></div></div>
+<div class="opsfoot"><div class="opsfoot-in"><span><b>Public Portfolio</b>, Ahmer Faheem &copy; 2022, 2023 and 2026</span></div></div>
 </body>
 </html>
